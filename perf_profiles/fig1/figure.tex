@@ -1,3 +1,4 @@
+%%% Compiled with XelaTeX 
 \documentclass[border=1pt]{standalone}
 \usepackage{tikz}
 \usepackage{pgfplots, pgfplotstable}
@@ -19,7 +20,6 @@
         xmax= 20,
         xmode=log,
         xlabel=$\alpha$,
-        xlabel={},
         xtick={2, 4, 6, 8, 10},
         xticklabels={2, 4, 6, 8, 10},
         x tick label style={/pgf/number format/fixed,
@@ -35,9 +35,6 @@
                             /pgf/number format/precision=1},
         grid = major,
         grid style={dashed, gray!30},
-        tick align=outside,
-        enlargelimits=false,
-        title={$u_f=\textsc{b}$}
     ]
 
         \addplot[const plot mark mid,
