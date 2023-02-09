@@ -1,5 +1,8 @@
-%%% Compiled with XelaTeX 
-\documentclass[border=1pt]{standalone}
+%%% Compiled with XelaTeX
+%%% TeX-command-extra-options: "-shell-escape"
+\documentclass[convert={density=300,size=1080x800,outext=.png},border=10pt]{standalone}
+\usepackage{fontspec}
+\setmainfont{Roboto Light}
 \usepackage{tikz}
 \usepackage{pgfplots, pgfplotstable}
 \pgfplotsset{compat=newest}
@@ -12,34 +15,29 @@
 \begin{tikzpicture}
     \begin{axis}
     [
-        legend style={at={(0.95,0.5)}, font=\scriptsize},
+        legend style={at={(0.95,0.53)}, font=\scriptsize},
         width=1.\linewidth,
         height=0.6\linewidth,
         axis x line=left,
-        xmin= 1,
-        xmax= 20,
+        xmin=1,
+        xmax=20,
         xmode=log,
         xlabel=$\alpha$,
         xtick={2, 4, 6, 8, 10},
         xticklabels={2, 4, 6, 8, 10},
-        x tick label style={/pgf/number format/fixed,
-                            /pgf/number format/fixed zerofill,
-                            /pgf/number format/precision=1},
         axis y line=middle,
         ymin= 0.,
         ymax= 1.,
         y label style={at={(axis description cs:-0.06,0.5)},rotate=90,anchor=south},
         ylabel=$\phi$,
-        y tick label style={/pgf/number format/fixed,
-                            /pgf/number format/fixed zerofill,
-                            /pgf/number format/precision=1},
+        ytick={0.2, 0.4, 0.6, 0.8, 1},
+        yticklabels={0.2, 0.4, 0.6, 0.8, 1},
         grid = major,
         grid style={dashed, gray!30},
     ]
 
         \addplot[const plot mark mid,
                  solid,
-                 every mark/.append style={solid, fill=myorange, fill opacity=0.2},
                  color=myorange,
                  very thick
                  ] 
@@ -47,7 +45,6 @@
 
         \addplot[const plot mark mid,
                  solid,
-                 every mark/.append style={solid, fill=mygreen, fill opacity=0.2},
                  color=mygreen,
                  very thick
                  ] 
@@ -55,7 +52,6 @@
 
         \addplot[const plot mark mid,
                  solid,
-                 every mark/.append style={solid, fill=myyellow, fill opacity=0.2},
                  color=myyellow,
                  very thick
                  ] 
@@ -63,7 +59,6 @@
 
         \addplot[const plot mark mid,
                  solid,
-                 every mark/.append style={solid, fill=myblue, fill opacity=0.2},
                  color=myblue,
                  very thick
                  ] 
@@ -71,7 +66,6 @@
 
         \addplot[const plot mark mid,
                  solid,
-                 every mark/.append style={solid, fill=mypurple, fill opacity=0.2},
                  color=mypurple,
                  very thick,
                  ] 
@@ -79,7 +73,6 @@
 
         \addplot[const plot mark mid,
                  solid,
-                 every mark/.append style={solid, fill=myred, fill opacity=0.2},
                  color=myred,
                  very thick,
                  ] 
@@ -87,14 +80,12 @@
 
         \addplot[const plot mark mid,
                  dashed,
-                 every mark/.append style={solid, fill=myblue, fill opacity=0.2},
                  color=myblue,
                  very thick,
                  ] 
              table[x=val-1,y=perc-1] {\data};
 
-        \legend{\textsc{bdq}, \textsc{bdd}, \textsc{bsd}, \textsc{bss}, 
-                \textsc{bbd}, \textsc{bbs}, LU: $u_f=$ \textsc{b}}
+        \legend{BDQ, BDD, BSD, BSS, BBD, BBS, LU: $u_f=$ B}
     \end{axis}
 \end{tikzpicture}
 
