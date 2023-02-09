@@ -1,0 +1,71 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pgfplotstablefilter}[2018/06/10]
+\RequirePackage{pgfplotstable}
+
+\ProcessOptions\relax
+
+%Helper, uses internals ...
+\long\def\pgfplotslistpopfrontorrelax#1\to#2{%
+	\pgfplotslistcheckempty#1\relax
+	\ifpgfplotslistempty
+		\let#2=\relax
+	\else
+		\expandafter\pgfplotslistpopfront@impl#1\pgfplotslistpopfront@macronames#1#2%
+	\fi
+}
+
+\newif\ifpgfplotstable@filter@equals
+\pgfkeys{/pgfplots/table/filter/.code args={#1 #2 #3}{%
+	\def\equals{equals}\def\notequal{unequal}%
+	\def\given{#2}
+	\ifx\given\equals
+		\pgfplotstable@filter@equalsfalse
+	\else\ifx\given\notequal
+		\pgfplotstable@filter@equalstrue
+	\else
+		\pgfplotsthrow{invalid argument}{#2}{Valid comparators are `\equals` and `\notequal`. You supplied `#2`}\pgfeov%
+	\fi\fi
+	\def\pgfplotstable@filter@col{#1}%
+	\def\pgfplotstable@filter@value{#3}%
+}}
+
+%Copy from 2 to 3 and filter by rules in #1
+\long\def\pgfplotstablefilter[#1]#2#3{%
+	\pgfplotstable@isloadedtable{#2}{%
+		\pgfkeys{/pgfplots/table/filter=#1}%
+		\pgfplotslistnewempty{\removerows}%
+		\pgfplotstableforeachcolumnelement{\pgfplotstable@filter@col}\of#2\as\cell{%
+			\ifx\pgfplotstable@filter@value\cell
+				\ifpgfplotstable@filter@equals
+					\expandafter\pgfplotslistpushback\pgfplotstablerow\to\removerows
+				\fi
+			\else
+				\ifpgfplotstable@filter@equals\else
+					\expandafter\pgfplotslistpushback\pgfplotstablerow\to\removerows
+				\fi
+			\fi
+			\let#3=#2%
+			\pgfplotstablegetname#2\pgfplotstable@loc@TMPa
+			\expandafter\let\csname\string#3@@table@name\endcsname=\pgfplotstable@loc@TMPa
+			\expandafter\edef\csname\string#3@@table@scanline\endcsname{\pgfplotstablescanlinelengthof{#2}}%
+			\pgfplotslistforeachungrouped#2\as\pgfplotstable@loc@TMPa{%
+					\pgfplotslistcopy\removerows\to\removerows@local
+					\pgfplotslistnewempty\pgfplotstable@loc@TMPc
+					\pgfplotslistpopfrontorrelax\removerows@local\to\nextremove
+					\def\currow{0}%
+					\expandafter\pgfplotslistforeachungrouped\csname\string#2@\pgfplotstable@loc@TMPa\endcsname\as\pgfplotstable@loc@TMPb{%
+						\ifx\currow\nextremove
+							\pgfplotslistpopfrontorrelax\removerows@local\to\nextremove
+						\else
+							\expandafter\pgfplotslistpushback\pgfplotstable@loc@TMPb\to\pgfplotstable@loc@TMPc
+						\fi
+						\pgfplotsutil@advancestringcounter\currow
+					}%
+					\expandafter\let\csname\string#3@\pgfplotstable@loc@TMPa\endcsname=\pgfplotstable@loc@TMPc
+			}%
+		}%
+	}{%Table 2 not yet loaded
+		\pgfplotstableread{#2}\pgfplotstable@tmptbl
+		\pgfplotstablefilter[#1]{\pgfplotstable@tmptbl}{#3}%
+	}%
+}
