@@ -1,8 +1,8 @@
 %%% Compiled with XelaTeX
 %%% TeX-command-extra-options: "-shell-escape"
 \documentclass[convert={density=300,size=1080x800,outext=.png},border=10pt]{standalone}
-\usepackage{fontspec}
-\setmainfont{Roboto Light}
+%\usepackage{fontspec}
+%\setmainfont{Roboto Light}
 \usepackage{tikz}
 \usepackage{pgfplots, pgfplotstable}
 \pgfplotsset{compat=newest}
@@ -23,11 +23,11 @@
         xmin= 1.,
         xmax= 1e20,
         xmode=log,
-        %xlabel=Original condition number $\kappa(A)$,
+        xlabel=Original condition number $\kappa(A)$,
         ymin= 1.,
         ymax= 1e20,
         ymode=log,
-        %ylabel=Scaled condition number $\kappa(A_s)$,
+        ylabel=Scaled condition number $\kappa(A_s)$,
         enlargelimits=false,
         colormap={}{color={myblue} color={mypurple} color={myyellow} 
                     color=(myred) color=(myred) color=(myred)}
