@@ -1,15 +1,11 @@
 %%% Compiled with XelaTeX
 %%% TeX-command-extra-options: "-shell-escape"
 \documentclass[convert={density=300,size=1080x800,outext=.png},border=10pt]{standalone}
-%\usepackage{fontspec}
-%\setmainfont{Roboto Light}
 \usepackage{tikz}
 \usepackage{pgfplots, pgfplotstable, pgfplotstablefilter}
 \pgfplotsset{compat=newest}
 
 \input{color_theme.tex}
-
-\begin{document}
 
 % Reinit stacked bar command
 \makeatletter
@@ -33,7 +29,8 @@
 \pgfplotstablegetrowsof{\groupc}
 \pgfmathsetmacro{\nbrowsc}{\pgfplotsretval}
 
-\begin{tikzpicture}[scale=1.] 
+\begin{document}
+\begin{tikzpicture}
     \begin{axis}
     [
         point meta=explicit symbolic,
@@ -60,6 +57,7 @@
         ymin=0,
         ymax=1.6,
         ytick={0, 0.25, 0.5, 0.75, 1, 2},
+        yticklabels={0, 0.25, 0.5, 0.75, 1, 2},
         name=axis1,
         at={(0,0)}
     ]
@@ -149,6 +147,7 @@
         ymin=0,
         ymax=1.6,
         ytick={0, 0.25, 0.5, 0.75, 1, 2},
+        yticklabels={0, 0.25, 0.5, 0.75, 1, 2},
         name=axis2,
         at={(0,-0.45\linewidth)}
     ]
@@ -212,7 +211,7 @@
                     table[x expr=\coordindex,y=aq] {\groupb};
     \end{axis}
 
-    \node[rectangle,draw,inner sep=1pt] at (2,4) (box) 
+    \node[rectangle,draw,inner sep=1pt] at (2,3.75) (box) 
         {\small
         \begin{tabular}{l}
             \small C: LU, $u_f$=\textsc{d} \\
@@ -220,5 +219,4 @@
             \small E: GMRES, $u_f$=\textsc{s}
         \end{tabular}};
 \end{tikzpicture}
-
 \end{document}

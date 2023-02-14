@@ -1,17 +1,15 @@
 %%% Compiled with XelaTeX
 %%% TeX-command-extra-options: "-shell-escape"
 \documentclass[convert={density=300,size=1080x800,outext=.png},border=10pt]{standalone}
-%\usepackage{fontspec}
-%\setmainfont{Roboto Light}
 \usepackage{tikz}
 \usepackage{pgfplots, pgfplotstable}
 \pgfplotsset{compat=newest}
 
 \input{color_theme.tex}
 
-\begin{document}
 \pgfplotstableread[col sep=comma]{data.csv}{\data}
 
+\begin{document}
 \begin{tikzpicture}
     \begin{axis}
     [
@@ -33,7 +31,7 @@
         ytick={0.2, 0.4, 0.6, 0.8, 1},
         yticklabels={0.2, 0.4, 0.6, 0.8, 1},
         grid = major,
-        grid style={dashed, gray!30},
+        grid style={dashed, mygray},
     ]
 
         \addplot[const plot mark mid,
@@ -88,5 +86,4 @@
         \legend{BDQ, BDD, BSD, BSS, BBD, BBS, LU: $u_f=$ B}
     \end{axis}
 \end{tikzpicture}
-
 \end{document}
