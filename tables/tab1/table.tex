@@ -1,0 +1,141 @@
+%%% Compiled with XelaTeX
+%%% TeX-command-extra-options: "-shell-escape"
+\documentclass[convert={density=300,size=1080x800,outext=.png},border=10pt]{standalone}
+%\usepackage{fontspec}
+%\setmainfont{Roboto Light}
+\usepackage{tikz}
+\usepackage{pgfplots, pgfplotstable}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{multirow}
+\pgfplotsset{compat=newest}
+\usepackage{etoolbox}
+
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcommand{\colwdtha}{0.06\linewidth}
+\newcommand{\colwdthb}{0.05\linewidth}
+\newcommand{\colwdthc}{0.05\linewidth}
+\setlength{\tabcolsep}{6pt}
+
+\pgfplotstableread[col sep=comma]{data.csv}{\data}
+\pgfplotstablegetrowsof{\data}
+\pgfmathsetmacro{\N}{\pgfplotsretval-1}  
+
+\begin{document}
+
+\pgfplotstabletypeset[col sep=comma,
+                      string type,
+                      font=\small,
+                      every head row/.style={output empty row,before row={
+                      \rowcolor{gray!10} & \multicolumn{1}{r |}{Solver} & 
+                      \multicolumn{1}{C{\colwdthb}}{\scriptsize LU} &
+                      \multicolumn{1}{C{\colwdthb}}{\scriptsize LU} & 
+                      \multicolumn{1}{C{\colwdtha}}{\scriptsize GM} & 
+                      \multicolumn{1}{C{\colwdtha} |}{\scriptsize GM} & 
+                      \multicolumn{1}{C{\colwdthb}}{\scriptsize LU} & 
+                      \multicolumn{1}{C{\colwdthb}}{\scriptsize LU} & 
+                      \multicolumn{1}{C{\colwdtha}}{\scriptsize GM} & 
+                      \multicolumn{1}{C{\colwdtha} |}{\scriptsize GM} & 
+                      \multicolumn{1}{C{\colwdthb}}{\scriptsize LU} & 
+                      \multicolumn{1}{C{\colwdthb}}{\scriptsize LU} & 
+                      \multicolumn{1}{C{\colwdtha}}{\scriptsize GM} & 
+                      \multicolumn{1}{C{\colwdtha}}{\scriptsize GM} \\
+                      \rowcolor{gray!10} & \multicolumn{1}{r |}{$u_f$} & 
+                      \multicolumn{1}{C{\colwdthb}}{\textsc{d}} & 
+                      \multicolumn{1}{C{\colwdthb}}{\textsc{s}} & 
+                      \multicolumn{1}{C{\colwdtha}}{\textsc{s}} & 
+                      \multicolumn{1}{C{\colwdtha} |}{\textsc{s}} & 
+                      \multicolumn{1}{C{\colwdthb}}{\textsc{d}} & 
+                      \multicolumn{1}{C{\colwdthb}}{\textsc{s}} & 
+                      \multicolumn{1}{C{\colwdtha}}{\textsc{s}} & 
+                      \multicolumn{1}{C{\colwdtha} |}{\textsc{s}} & 
+                      \multicolumn{1}{C{\colwdthb}}{\textsc{d}} & 
+                      \multicolumn{1}{C{\colwdthb}}{\textsc{s}} & 
+                      \multicolumn{1}{C{\colwdtha}}{\textsc{s}} & 
+                      \multicolumn{1}{C{\colwdtha}}{\textsc{s}} \\
+                      \rowcolor{gray!10} & \multicolumn{1}{r |}{$u_p$=$u_g$} & 
+                      \multicolumn{1}{C{\colwdthb}}{\textemdash} & 
+                      \multicolumn{1}{C{\colwdthb}}{\textemdash} & 
+                      \multicolumn{1}{C{\colwdtha}}{\textsc{d}} & 
+                      \multicolumn{1}{C{\colwdtha} |}{\textsc{s}} & 
+                      \multicolumn{1}{C{\colwdthb}}{\textemdash} & 
+                      \multicolumn{1}{C{\colwdthb}}{\textemdash} & 
+                      \multicolumn{1}{C{\colwdtha}}{\textsc{d}} & 
+                      \multicolumn{1}{C{\colwdtha} |}{\textsc{s}} & 
+                      \multicolumn{1}{C{\colwdthb}}{\textemdash} & 
+                      \multicolumn{1}{C{\colwdthb}}{\textemdash} & 
+                      \multicolumn{1}{C{\colwdtha}}{\textsc{d}} & 
+                      \multicolumn{1}{C{\colwdtha}}{\textsc{s}} \\\toprule
+                      \multicolumn{1}{c}{ID} &
+                      \multicolumn{1}{c}{$\tau_b$} &
+                      \multicolumn{4}{| c |}{Time (s)} &
+                      \multicolumn{4}{c |}{Memory (GB)} &
+                      \multicolumn{4}{c}{Nb LU solves}\\
+                      }}, 
+                      columns={name,th,ddd-t,sdd-t,sdddd-t,sddss-t,ddd-m,sdd-m,
+                               sdddd-m,sddss-m,ddd-it,sdd-it,sdddd-it,
+                               sddss-it},
+                      columns/name/.style={
+                          column name={},
+                          column type={c},
+                          assign cell content/.code={
+                              \ifstrequal{##1}{}
+                              {\pgfkeyssetvalue{/pgfplots/table/@cell content}
+                                  {}}
+                              {\pgfkeyssetvalue{/pgfplots/table/@cell content}
+                                  {\midrule\multirow{3}{*}{\footnotesize 
+                                   \rotatebox{90}{##1}}}}
+                          },
+                      },
+                      columns/th/.style={column name={}, column type={c}},
+                      columns/ddd-t/.style={column name=$\mathrm{A}_b$, column
+                      type={| R{\colwdthb}},
+                      },
+                      columns/sdd-t/.style={column name=$\mathrm{B}_b$, column
+                      type={R{\colwdthb}},
+                      },
+                      columns/sdddd-t/.style={column name=$\mathrm{C}_b$,
+                      column type={R{\colwdtha}},
+                      },
+                      columns/sddss-t/.style={column name=$\mathrm{D}_b$,
+                      column type={R{\colwdtha} |},
+                      },
+                      columns/ddd-m/.style={column name=$\mathrm{A}_b$, column
+                      type={R{\colwdthb}},
+                      },
+                      columns/sdd-m/.style={column name=$\mathrm{B}_b$, column
+                      type={R{\colwdthb}},
+                      },
+                      columns/sdddd-m/.style={column name=$\mathrm{C}_b$,
+                      column type={R{\colwdtha}},
+                      },
+                      columns/sddss-m/.style={column name=$\mathrm{D}_b$,
+                      column type={R{\colwdtha} |},
+                      },
+                      columns/ddd-it/.style={column name=$\mathrm{A}_b$, column
+                      type={R{\colwdthb}},
+                      },
+                      columns/sdd-it/.style={column name=$\mathrm{B}_b$, column
+                      type={R{\colwdthb}},
+                      },
+                      columns/sdddd-it/.style={column name=$\mathrm{C}_b$,
+                      column type={R{\colwdtha}},
+                      },
+                      columns/sddss-it/.style={column name=$\mathrm{D}_b$,
+                      column type={R{\colwdtha}},
+                      },
+                      postproc cell content/.code={
+                        \ifodd\pgfplotstablerow\relax
+                        \else
+                            \ifnum\pgfplotstablecol>0
+                                \pgfkeysalso{@cell
+                                content={\cellcolor{gray!30}#1}}%
+                            \fi
+                        \fi
+                      },
+                      every last row/.style={after row=\bottomrule}
+                      ]{\data}
+\end{document}

@@ -1,0 +1,231 @@
+%%% Compiled with XelaTeX
+%%% TeX-command-extra-options: "-shell-escape"
+\documentclass[convert={density=300,size=1080x800,outext=.png},border=10pt]{standalone}
+%\usepackage{fontspec}
+%\setmainfont{Roboto Light}
+\usepackage{tikz}
+\usetikzlibrary{shapes.arrows,positioning}
+\usepackage{pgfplots, pgfplotstable, pgfplotstablefilter}
+\pgfplotsset{compat=newest}
+
+\input{color_theme.tex}
+
+% Reinit stacked bar command
+\makeatletter
+\newcommand\resetstackedplots{
+\makeatletter
+\pgfplots@stacked@isfirstplottrue
+\makeatother
+}
+
+% Load data and make groups of plots
+\pgfplotstableread[col sep=comma]{data.csv}{\data}
+\pgfplotstablefilter[group equals 1]{\data}{\groupa}
+\pgfplotstablefilter[group equals 2]{\data}{\groupb}
+\pgfplotstablefilter[group equals 3]{\data}{\groupc}
+\pgfplotstablefilter[group equals 4]{\data}{\groupd}
+
+% Get the number of rows of the data (i.e the number of matrices)
+\pgfplotstablegetrowsof{\groupa}
+\pgfmathsetmacro{\nbrowsa}{\pgfplotsretval}
+\pgfplotstablegetrowsof{\groupb}
+\pgfmathsetmacro{\nbrowsb}{\pgfplotsretval}
+\pgfplotstablegetrowsof{\groupc}
+\pgfmathsetmacro{\nbrowsc}{\pgfplotsretval}
+\pgfplotstablegetrowsof{\groupd}
+\pgfmathsetmacro{\nbrowsd}{\pgfplotsretval}
+
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}
+    [
+        point meta=explicit symbolic,
+        nodes near coords,
+        every node near coord/.append style={font=\normalsize,above},
+        legend style={at={(0.2,0.95),font=\normalsize},
+        anchor=north,legend columns=-1},
+        ybar stacked,
+        ymajorgrids,
+        width=1.2\linewidth,
+        height=0.5\linewidth,
+        ylabel={\normalsize Normalized time by DMUMPS},
+        y label style={at={(axis description cs:-0.075,0.5)}},
+        axis lines=left,
+        x tick label style={font=\normalsize},
+        x tick style={thick},
+        xmin=-0.5,
+        xmax=\nbrowsa-0.5,
+        xtick=data,
+        xticklabels from table={\groupa}{name},
+        xticklabel style={font=\normalsize},
+        ymin=0,
+        ymax=1.6,
+        ytick={0, 0.25, 0.5, 0.75, 1},
+        name=axis1,
+        at={(0,0)}
+    ]
+
+        \pgfplotsinvokeforeach{0,...,\nbrowsa-1} {
+            \node at (axis cs:#1-0.3,0.1) [circle,scale=0.75,draw=none, 
+                                           fill=green!0,inner sep=1pt] {A};
+            \node at (axis cs:#1-0.15,0.1) [circle,scale=0.75,draw=none,
+                                            fill=green!0,inner sep=1pt] {B};
+            \node at (axis cs:#1,0.1) [circle,scale=0.75,draw=none,
+                                       fill=green!0,inner sep=1pt] {C};
+            \node at (axis cs:#1+0.15,0.1) [circle,scale=0.75,draw=none,
+                                            fill=green!0,inner sep=1pt] {D};
+            \node at (axis cs:#1+0.3,0.1) [circle,scale=0.75,draw=none,
+                                           fill=green!0,inner sep=1pt] {E};
+        }
+
+        \addplot [fill=myred-mild,bar width=0.1,draw=none] 
+                    table[x expr=\coordindex,y=factod] {\groupa};
+        \addplot [fill=mygreen-mild,bar width=0.1,draw=none] 
+                    table[x expr=\coordindex,y=solveddq] {\groupa};
+        \addplot [fill=myblue-mild,bar width=0.1,draw=none] 
+              table[x expr=\coordindex,y=otherddq,meta=metaddq] {\groupa};
+
+        \resetstackedplots
+
+        \addplot [fill=myred-mild,bar width=0.1,draw=none,bar shift=-0.3] 
+                    table[x expr=\coordindex,y=factos] {\groupa};
+        \addplot [fill=mygreen-mild,bar width=0.1,draw=none,bar shift=-0.3] 
+                    table[x expr=\coordindex,y=solvesdd] {\groupa};
+        \addplot [fill=myblue-mild,bar width=0.1,draw=none,bar shift=-0.3] 
+              table[x expr=\coordindex,y=othersdd,meta=metasdd] {\groupa};
+
+        \resetstackedplots
+
+        \addplot [fill=myred-mild,bar width=0.1,draw=none,bar shift=-0.15] 
+                    table[x expr=\coordindex,y=factos] {\groupa};
+        \addplot [fill=mygreen-mild,bar width=0.1,draw=none,bar shift=-0.15] 
+                    table[x expr=\coordindex,y=solvesdddd] {\groupa};
+        \addplot [fill=myblue-mild,bar width=0.1,draw=none,bar shift=-0.15] 
+              table[x expr=\coordindex,y=othersdddd,meta=metasdddd] {\groupa};
+
+        \resetstackedplots
+
+        \addplot [fill=myred-mild,bar width=0.1,draw=none,bar shift=0.15] 
+                    table[x expr=\coordindex,y=factos] {\groupa};
+        \addplot [fill=mygreen-mild,bar width=0.1,draw=none,bar shift=0.15] 
+                    table[x expr=\coordindex,y=solvesdq] {\groupa};
+        \addplot [fill=myblue-mild,bar width=0.1,draw=none,bar shift=0.15] 
+              table[x expr=\coordindex,y=othersdq,meta=metasdq] {\groupa};
+
+        \resetstackedplots
+
+        \addplot [fill=myred-mild,bar width=0.1,draw=none,bar shift=0.3] 
+                    table[x expr=\coordindex,y=factos] {\groupa};
+        \addplot [fill=mygreen-mild,bar width=0.1,draw=none,bar shift=0.3] 
+                    table[x expr=\coordindex,y=solvesdqdd] {\groupa};
+        \addplot [fill=myblue-mild,bar width=0.1,draw=none,bar shift=0.3] 
+              table[x expr=\coordindex,y=othersdqdd,meta=metasdqdd] {\groupa};
+
+        \legend{Facto, Solves, Other}
+    \end{axis}
+
+    \begin{axis}
+    [
+        point meta=explicit symbolic,
+        nodes near coords,
+        legend style={at={(0.8,0.95)},
+        anchor=north,legend columns=-1},
+        every node near coord/.append style={font=\normalsize,above},
+        ybar stacked,
+        ymajorgrids,
+        width=1.2\linewidth,
+        height=0.5\linewidth,
+        ylabel={\normalsize Normalized time by DMUMPS},
+        y label style={at={(axis description cs:-0.075,0.5)}},
+        axis lines=left,
+        x tick label style={font=\normalsize},
+        x tick style={thick},
+        xmin=-0.5,
+        xmax=\nbrowsb-0.5,
+        xtick=data,
+        xticklabels from table={\groupb}{name},
+        xticklabel style={font=\normalsize},
+        ymin=0,
+        ymax=4.,
+        ytick={0, 0.5, 1, 2},
+        yticklabels={0, 0.5, 1, 2},
+        name=axis2,
+        at={(0,-0.45\linewidth)}
+    ]
+
+        \pgfplotsinvokeforeach{0,...,\nbrowsb-1} {
+            \node at (axis cs:#1-0.3,0.25) [circle,scale=0.75,draw=none,
+                                            fill=green!0,inner sep=1pt] {A};
+            \node at (axis cs:#1-0.15,0.25) [circle,scale=0.75,draw=none,
+                                             fill=green!0,inner sep=1pt] {B};
+            \node at (axis cs:#1,0.25) [circle,scale=0.75,draw=none,
+                                        fill=green!0,inner sep=1pt] {C};
+            \node at (axis cs:#1+0.15,0.25) [circle,scale=0.75,draw=none,
+                                             fill=green!0,inner sep=1pt] {D};
+            \node at (axis cs:#1+0.3,0.25) [circle,scale=0.75,draw=none,
+                                            fill=green!0,inner sep=1pt] {E};
+        }
+
+        \addplot [fill=myred-mild,bar width=0.1,draw=none] 
+                    table[x expr=\coordindex,y=factod] {\groupb};
+        \addplot [fill=mygreen-mild,bar width=0.1,draw=none] 
+                    table[x expr=\coordindex,y=solveddq] {\groupb};
+        \addplot [fill=myblue-mild,bar width=0.1,draw=none] 
+              table[x expr=\coordindex,y=otherddq,meta=metaddq] {\groupb};
+
+        \resetstackedplots
+
+        \addplot [fill=myred-mild,bar width=0.1,draw=none,bar shift=-0.3] 
+                    table[x expr=\coordindex,y=factos] {\groupb};
+        \addplot [fill=mygreen-mild,bar width=0.1,draw=none,bar shift=-0.3] 
+                    table[x expr=\coordindex,y=solvesdd] {\groupb};
+        \addplot [fill=myblue-mild,bar width=0.1,draw=none,bar shift=-0.3] 
+              table[x expr=\coordindex,y=othersdd,meta=metasdd] {\groupb};
+
+        \resetstackedplots
+
+        \addplot [fill=myred-mild,bar width=0.1,draw=none,bar shift=-0.15] 
+                    table[x expr=\coordindex,y=factos] {\groupb};
+        \addplot [fill=mygreen-mild,bar width=0.1,draw=none,bar shift=-0.15] 
+                    table[x expr=\coordindex,y=solvesdddd] {\groupb};
+        \addplot [fill=myblue-mild,bar width=0.1,draw=none,bar shift=-0.15] 
+              table[x expr=\coordindex,y=othersdddd,meta=metasdddd] {\groupb};
+
+        \resetstackedplots
+
+        \addplot [fill=myred-mild,bar width=0.1,draw=none,bar shift=0.15] 
+                    table[x expr=\coordindex,y=factos] {\groupb};
+        \addplot [fill=mygreen-mild,bar width=0.1,draw=none,bar shift=0.15] 
+                    table[x expr=\coordindex,y=solvesdq] {\groupb};
+        \addplot [fill=myblue-mild,bar width=0.1,draw=none,bar shift=0.15] 
+              table[meta=metasdq,x expr=\coordindex,y=othersdq] {\groupb};
+
+        \resetstackedplots
+
+        \addplot [fill=myred-mild,bar width=0.1,draw=none,bar shift=0.3] 
+                    table[x expr=\coordindex,y=factos] {\groupb};
+        \addplot [fill=mygreen-mild,bar width=0.1,draw=none,bar shift=0.3] 
+                    table[x expr=\coordindex,y=solvesdqdd] {\groupb};
+        \addplot [fill=myblue-mild,bar width=0.1,draw=none,bar shift=0.3] 
+              table[x expr=\coordindex,y=othersdqdd,meta=metasdqdd] {\groupb};
+
+    \end{axis}
+
+    \node[rectangle,draw,inner sep=1pt,fill=gray!0] at (8.5,4) (box) {\small
+        \begin{tabular}{ll}
+            \small A: LU, $u_f$=\textsc{s}, $u_r$=\textsc{d} & \small B: GMRES,
+            $u_f$=\textsc{s}, $u_r$=\textsc{d} \\
+            \small C: LU, $u_f$=\textsc{d}, $u_r$=\textsc{q} & \small D: LU, 
+            $u_f$=\textsc{s}, $u_r$=\textsc{q} \\
+            & \small E: GMRES, $u_f$=\textsc{s}, $u_r$=\textsc{q}
+        \end{tabular}
+        };
+
+
+    \node[draw, rotate=90, single arrow, fill=black, scale=0.2] at
+        (7.125,-0.95) 
+        (arrow) {aaaaaa};
+    \node[] at (7.6,-0.85) (nbLU) {49};
+\end{tikzpicture}
+
+\end{document}

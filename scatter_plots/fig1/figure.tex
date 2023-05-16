@@ -9,13 +9,12 @@
 
 \input{color_theme.tex}
 
-\pagecolor{black!0.1}
-
 \begin{document}
 \pgfplotstableread[col sep=comma]{data.csv}{\data}
 
 \begin{tikzpicture}
-    \begin{axis}[
+    \begin{axis}
+    [
         width=1.\linewidth,
         height=0.6\linewidth,
         grid,
@@ -31,18 +30,14 @@
         enlargelimits=false,
         colormap={}{color={myblue} color={mypurple} color={myyellow} 
                     color=(myred) color=(myred) color=(myred)}
-        %colormap={}{color(0.1cm)=(blue); color(5.8cm)=(red);}
     ]
 
         \addplot[scatter,
-                 %solid,
-                 %every mark/.append style={solid, fill=myred-extralight},
                  very thick,
                  only marks,
                  clip mode=individual,
                  mark size=2pt,
                  fill opacity=0.2,
-                 %draw opacity=0.9,
                  mark=*, 
                  ] 
              table[x=kbef,y=kaft] {\data};
@@ -52,7 +47,6 @@
             (axis cs:1e20,1e20);
 
         \node[rotate=30] at (5e11,5e12) (id) {$\kappa(A)=\kappa(A_s)$};
-
     \end{axis}
 \end{tikzpicture}
 

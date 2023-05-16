@@ -1,0 +1,48 @@
+mat,name,th,ddd-t,sdd-t,sdddd-t,sddss-t,ddd-m,sdd-m,sdddd-m,sddss-m,ddd-it,sdd-it,sdddd-it,sddss-it
+\normalsize 1,ElectroPhys10M,full-rank,265.2,154.0,166.5,163.3,272.0,138.0,171.3,138.0,1,3,5,7
+,,1E-10,101.0,\textbf{70.5},73.7,72.7,158.0,84.5,84.6,84.6,2,3,5,7
+,,1E-08,93.1,\textbf{70.0},72.8,72.1,157.0,80.6,82.2,82.2,2,3,5,7
+,,1E-06,91.1,\textbf{64.9},\textbf{68.2},\textbf{68.5},149.0,\textbf{77.8},79.6,79.6,3,3,6,10
+,,1E-04,88.3,\textbf{66.3},\textbf{69.3},\textbf{70.8},143.0,\textbf{73.6},\textbf{77.0},\textbf{77.0},4,4,7,13
+,,1E-02,89.8,71.4,75.0,128.1,147.0,\textbf{73.6},\textbf{73.6},\textbf{73.6},9,9,11,125
+,,1E-01,97.8,73.6,81.0,119.5,147.0,\textbf{71.8},\textbf{73.4},\textbf{73.4},19,18,24,115
+\normalsize 10,DrivAer6M,full-rank,91.8,67.6,77.9,77.4,81.6,41.7,52.9,41.7,1,3,5,7
+,,1E-10,55.6,\textbf{43.7},46.5,46.9,54.5,28.2,28.2,28.2,2,6,7,10
+,,1E-08,54.3,\textbf{42.2},\textbf{44.8},\textbf{46.1},51.9,26.9,26.9,26.9,4,6,7,11
+,,1E-06,62.6,47.8,\textbf{44.7},\textbf{45.8},49.3,25.5,25.5,25.5,15,15,9,13
+,,1E-04,\textemdash,\textemdash,73.2,106.2,\textemdash,\textemdash,\textbf{24.0},\textbf{24.0},\textemdash,\textemdash,45,95
+,,1E-02,\textemdash,\textemdash,248.4,404.3,\textemdash,\textemdash,\textbf{22.7},\textbf{22.7},\textemdash,\textemdash,256,502
+,,1E-01,\textemdash,\textemdash,471.3,1490.4,\textemdash,\textemdash,\textbf{22.4},41.0,\textemdash,\textemdash,528,1997
+\normalsize 16,tminlet3M,full-rank,294.5,136.2,157.9,176.3,241.0,121.0,169.9,121.0,1,7,15,56
+,,1E-10,232.9,158.8,174.0,181.2,188.0,118.0,169.9,118.0,2,7,16,55
+,,1E-08,204.9,149.7,165.3,182.7,171.0,114.0,161.9,114.0,3,7,17,79
+,,1E-06,179.0,\textbf{88.3},98.8,105.5,154.0,82.4,93.8,82.8,5,7,16,54
+,,1E-04,\textemdash,\textemdash,105.6,116.3,\textemdash,\textemdash,\textbf{70.9},\textbf{70.9},\textemdash,\textemdash,69,181
+\normalsize 17,perf009ar,full-rank,46.1,57.5,52.0,110.0,55.6,28.9,38.1,28.9,1,28,16,92
+,,1E-10,\textbf{32.9},40.3,36.9,83.1,38.7,20.5,25.6,20.5,2,22,15,94
+,,1E-08,\textbf{33.6},41.5,37.3,88.0,37.1,\textbf{19.7},22.8,\textbf{19.7},4,26,16,107
+,,1E-06,\textemdash,\textemdash,40.9,187.8,\textemdash,\textemdash,\textbf{20.0},\textbf{18.6},\textemdash,\textemdash,25,280
+,,1E-04,\textemdash,\textemdash,658.3,\textemdash,\textemdash,\textemdash,36.6,\textemdash,\textemdash,\textemdash,949,\textemdash
+,,1E-02,\textemdash,\textemdash,2224.1,\textemdash,\textemdash,\textemdash,98.1,\textemdash,\textemdash,\textemdash,3338,\textemdash
+\normalsize 20,elasticity-3d,full-rank,156.7,\textemdash,118.6,\textemdash,153.0,\textemdash,103.6,\textemdash,1,\textemdash,11,\textemdash
+,,1E-10,110.2,\textemdash,82.3,\textemdash,95.5,\textemdash,72.1,\textemdash,2,\textemdash,10,\textemdash
+,,1E-08,96.3,\textemdash,68.6,\textemdash,91.6,\textemdash,56.8,\textemdash,5,\textemdash,10,\textemdash
+,,1E-06,\textemdash,\textemdash,\textbf{57.9},\textemdash,\textemdash,\textemdash,44.1,\textemdash,\textemdash,\textemdash,13,\textemdash
+,,1E-04,\textemdash,\textemdash,125.3,\textemdash,\textemdash,\textemdash,\textbf{39.0},\textemdash,\textemdash,\textemdash,121,\textemdash
+\normalsize 22,lfm\_aug5M,full-rank,536.2,254.5,269.3,353.6,312.0,157.0,187.5,157.0,1,4,5,46
+,,1E-10,313.3,199.8,210.0,230.9,240.0,141.0,147.6,144.0,2,4,7,37
+,,1E-08,260.2,119.2,130.1,162.3,218.0,112.0,116.0,116.0,3,4,9,60
+,,1E-06,223.2,\textbf{100.4},110.1,131.3,199.0,107.0,107.0,107.0,4,4,9,47
+,,1E-04,212.3,\textbf{95.8},105.4,124.7,200.0,\textbf{101.0},\textbf{103.0},\textbf{103.0},22,20,19,65
+,,1E-02,\textemdash,\textemdash,482.6,1111.0,\textemdash,\textemdash,\textbf{96.8},\textbf{96.8},\textemdash,\textemdash,367,1763
+\normalsize 24,CarBody25M,full-rank,\textbf{62.9},\textemdash,109.8,\textemdash,77.6,\textemdash,54.3,\textemdash,1,\textemdash,24,\textemdash
+,,1E-10,\textbf{63.3},\textemdash,90.8,\textemdash,65.5,\textemdash,\textbf{44.0},\textemdash,3,\textemdash,23,\textemdash
+,,1E-08,\textbf{68.9},\textemdash,91.3,\textemdash,64.8,\textemdash,\textbf{41.8},\textemdash,6,\textemdash,23,\textemdash
+,,1E-06,\textemdash,\textemdash,299.4,\textemdash,\textemdash,\textemdash,55.8,\textemdash,\textemdash,\textemdash,140,\textemdash
+\normalsize 25,thmgas,full-rank,97.6,\textbf{65.4},79.8,79.6,192.0,97.7,141.7,97.7,1,4,7,10
+,,1E-10,88.9,\textbf{63.7},75.8,69.5,137.0,70.9,110.5,71.0,2,4,7,7
+,,1E-08,81.3,\textbf{59.5},66.1,66.7,131.0,67.5,92.1,67.6,3,4,7,7
+,,1E-06,85.1,\textbf{61.4},65.6,70.8,118.0,61.4,70.4,61.5,8,8,9,13
+,,1E-04,\textemdash,\textemdash,147.5,131.4,\textemdash,\textemdash,53.7,53.7,\textemdash,\textemdash,53,48
+,,1E-02,\textemdash,\textemdash,1043.9,2380.8,\textemdash,\textemdash,\textbf{45.5},\textbf{45.5},\textemdash,\textemdash,523,1259
+,,1E-01,\textemdash,\textemdash,3340.5,3155.2,\textemdash,\textemdash,48.9,\textbf{43.7},\textemdash,\textemdash,1399,1649
