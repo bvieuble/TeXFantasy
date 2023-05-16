@@ -37,53 +37,25 @@
         grid style={dashed, mygray},
     ]
 
-        \addplot[const plot mark mid,
-                 solid,
-                 color=myorange,
-                 very thick
-                 ] 
+        \addplot[const plot mark mid,solid,color=myorange,very thick] 
              table[x=val-7,y=perc-7] {\data};
 
-        \addplot[const plot mark mid,
-                 solid,
-                 color=mygreen,
-                 very thick
-                 ] 
+        \addplot[const plot mark mid,solid,color=mygreen,very thick] 
              table[x=val-6,y=perc-6] {\data};
 
-        \addplot[const plot mark mid,
-                 solid,
-                 color=myyellow,
-                 very thick
-                 ] 
+        \addplot[const plot mark mid,solid,color=myyellow,very thick] 
              table[x=val-5,y=perc-5] {\data};
 
-        \addplot[const plot mark mid,
-                 solid,
-                 color=myblue,
-                 very thick
-                 ] 
+        \addplot[const plot mark mid,solid,color=myblue,very thick] 
              table[x=val-4,y=perc-4] {\data};
 
-        \addplot[const plot mark mid,
-                 solid,
-                 color=mypurple,
-                 very thick,
-                 ] 
+        \addplot[const plot mark mid,solid,color=mypurple,very thick] 
              table[x=val-3,y=perc-3] {\data};
 
-        \addplot[const plot mark mid,
-                 solid,
-                 color=myred,
-                 very thick,
-                 ] 
+        \addplot[const plot mark mid,solid,color=myred,very thick] 
              table[x=val-2,y=perc-2] {\data};
 
-        \addplot[const plot mark mid,
-                 dashed,
-                 color=myblue,
-                 very thick,
-                 ] 
+        \addplot[const plot mark mid,dashed,color=myblue,very thick] 
              table[x=val-1,y=perc-1] {\data};
 
         \legend{BDQ, BDD, BSD, BSS, BBD, BBS, LU: $u_f=$ B}

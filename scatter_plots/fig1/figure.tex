@@ -32,15 +32,9 @@
                     color=(myred) color=(myred) color=(myred)}
     ]
 
-        \addplot[scatter,
-                 very thick,
-                 only marks,
-                 clip mode=individual,
-                 mark size=2pt,
-                 fill opacity=0.2,
-                 mark=*, 
-                 ] 
-             table[x=kbef,y=kaft] {\data};
+        \addplot[scatter,very thick,only marks,clip mode=individual,
+                 mark size=2pt,fill opacity=0.2,mark=*] 
+            table[x=kbef,y=kaft] {\data};
 
         \draw[black, thick]
             (axis cs:1e0,1e0) -- 
