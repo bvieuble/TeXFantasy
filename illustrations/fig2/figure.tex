@@ -92,23 +92,23 @@
 \foreach \whichplot in
     {\plota,\plotb,\plotc,\plotd,\plote,\plotf,\plotg,\ploth,\ploti,\plotj}
 {\begin{tikzpicture}
-\begin{axis}
-    [
-        ymajorticks=false,
-        xtick={8,1.5},
-        xticklabels = {\large $x_0$, \large $x$},
-        width=1.1\textwidth,
-        height=0.6\textwidth,
-        ymin=-1,
-        ymax=5,
-        xmax=9,
-        xmin=-0.5,
-        axis lines=middle,
-        tick style={black, very thick},
-    ]
+    \begin{axis}
+        [
+            ymajorticks=false,
+            xtick={8,1.5},
+            xticklabels = {\large $x_0$, \large $x$},
+            width=1.1\textwidth,
+            height=0.6\textwidth,
+            ymin=-1,
+            ymax=5,
+            xmax=9,
+            xmin=-0.5,
+            axis lines=middle,
+            tick style={black, very thick},
+        ]
 
-    \whichplot
+        \whichplot
 
-\end{axis}
+    \end{axis}
 \end{tikzpicture}}
 \end{document}
