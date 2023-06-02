@@ -4,3 +4,5 @@ materials to scientific journal articles.
 
 This git repository contains the full code of the figures displayed on my
 website: https://bvieuble.github.io
+
+![pic1](img/github-pic1.png)
