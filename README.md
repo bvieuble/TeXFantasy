@@ -4,7 +4,7 @@ TeXFantasy is a gallery of Latex figures that I used for various documents,
 from teaching materials to scientific journal articles. The gallery can be found
 on my website: https://bvieuble.github.io/texfantasy/
 
-<p style="text-align:center">
+<p align="center">
   <img src="assets/fig1-front.png" width="250" />
   <img src="assets/fig2-front.png" width="250" /> 
   <img src="assets/fig3-front.png" width="250" /> 
