@@ -28,10 +28,10 @@ I found for myself great help from Tikz galleries in the past to learn and know 
 
 LaTeX offers formidable ways to generate complex, net, and well-integrated plots for all your scientific documents. For me, its main appeal compared with the usual plot libraries of your favorite language (Julia, Python, Matlab, R, etc.) is that the background, fonts, and size of your figures automatically match your document's environment, giving it a nice professional look. 
 
-And naturally, there are far more benefits. We could talk about the fun beamer animations you can make or the almost infinite customization possibilities. Trust me, once you fall into the rabbit hole of LaTeX-generated plots, you won't come back!
+And naturally, there are far more benefits. We could talk about the fun beamer animations you can make or the almost infinite customization possibilities.
 
 ### Downsides
-Naturally, the more the tool is complete, the harder it is to manage and use. The Pgfplots and TikZ packages are no exceptions to this rule, and while they do not require weeks and weeks of learning to be able to get something out of them, a beginner will certainly need a couple of hours to learn how to draw its first plots.
+Naturally, the more the tool is complete, the harder it is to manage and use. The Pgfplots and TikZ packages are no exceptions to this rule, and while they do not require weeks and weeks of learning to be able to get something out of them, a beginner will certainly need a couple of hours to learn how to draw his/her first plots.
 
 Another annoying aspect of generating plots with LaTeX, which can understandably repel users, is data-to-plot retrieval. Let me state the problem. Say you have a nice Matlab code that produces an array of points you want to display. Of course, LaTeX does not talk Matlab, and conversely, so there is no magic trick that will make your Matlab array suddenly readable by LaTeX. The bad news is, up until now, I have not encountered an ideal method to interface both nicely.
 
