@@ -1,8 +1,8 @@
 %%% Compiled with XeLaTeX
 %%% TeX-command-extra-options: "-shell-escape"
 \documentclass[convert={outext=.png},border=10pt]{standalone}
-% \usepackage{fontspec}
-% \setmainfont{Roboto Light}
+\usepackage{fontspec}
+\setmainfont{Roboto}
 \usepackage{tikz}
 \usepackage{pgfplots,pgfplotstable}
 \pgfplotsset{compat=newest}
@@ -35,7 +35,11 @@
         enlargelimits=false,
         colormap={whiteblue}{color={myblue} color=(myred)},
         title={LU},
-        at={(0, 0)}
+        title style = {fg},
+        at={(0, 0)},
+        axis line style={fg},
+        every axis label/.append style ={fg},
+        every tick label/.append style={fg} 
     ]
 
         \addplot[scatter,mark=*,solid,
@@ -67,7 +71,11 @@
         enlargelimits=false,
         colormap={whiteblue}{color={myblue} color=(myred)},
         title=\textsc{hhs},
-        at={(0.5\linewidth, 0)}
+        title style = {fg},
+        at={(0.5\linewidth, 0)},
+        axis line style={fg},
+        every axis label/.append style ={fg},
+        every tick label/.append style={fg} 
     ]
 
         \addplot[scatter,mark=*,solid,
@@ -99,7 +107,11 @@
         enlargelimits=false,
         colormap={whiteblue}{color={myblue} color=(myred)},
         title=\textsc{hss},
-        at={(0, -0.3\linewidth)}
+        title style = {fg},
+        at={(0, -0.3\linewidth)},
+        axis line style={fg},
+        every axis label/.append style ={fg},
+        every tick label/.append style={fg} 
     ]
 
         \addplot[scatter,mark=*,solid,
@@ -131,7 +143,11 @@
         enlargelimits=false,
         colormap={whiteblue}{color={myblue} color=(myred)},
         title=\textsc{hsd},
-        at={(0.5\linewidth, -0.3\linewidth)}
+        title style = {fg},
+        at={(0.5\linewidth, -0.3\linewidth)},
+        axis line style={fg},
+        every axis label/.append style ={fg},
+        every tick label/.append style={fg} 
     ]
 
         \addplot[scatter,mark=*,solid,
@@ -163,7 +179,11 @@
         enlargelimits=false,
         colormap={whiteblue}{color={myblue} color=(myred)},
         title=\textsc{hdd},
-        at={(0, -0.6\linewidth)}
+        title style = {fg},
+        at={(0, -0.6\linewidth)},
+        axis line style={fg},
+        every axis label/.append style ={fg},
+        every tick label/.append style={fg} 
     ]
 
         \addplot[scatter,mark=*,solid,
@@ -195,7 +215,11 @@
         enlargelimits=false,
         colormap={whiteblue}{color={myblue} color=(myred)},
         title=\textsc{hdq}, 
-        at={(0.5\linewidth, -0.6\linewidth)}
+        title style = {fg},
+        at={(0.5\linewidth, -0.6\linewidth)},
+        axis line style={fg},
+        every axis label/.append style ={fg},
+        every tick label/.append style={fg} 
     ]
 
         \addplot[scatter,mark=*,solid,

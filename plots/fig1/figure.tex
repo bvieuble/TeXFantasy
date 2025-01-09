@@ -2,8 +2,8 @@
 %%% Generate the GIF with convert -delay 100 -loop 0 -density 200 -alpha on 
 %%% file.pdf file.gif (package imagemagick is required)
 \documentclass[tikz,border=10pt]{standalone}
-% \usepackage{fontspec}
-% \setmainfont{Roboto Light}
+\usepackage{fontspec}
+\setmainfont{Roboto}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 
@@ -18,22 +18,13 @@
              fill opacity=0.2},color=mypurple,very thick,mark size=4pt]
         table[x=ka,y=lu] {\data}; 
 
-
-    \addplot[mark=x,solid,every mark/.append style={solid,fill=mygray, 
-             fill opacity=0.},color=mygray,opacity=0.,very thick,mark size=4pt,
-             empty legend] 
+    \addplot[mark=none,opacity=0.] 
          table[x=ka,y=ds] {\data};    
 
-
-    \addplot[mark=triangle*,solid,every mark/.append style={solid, fill=mygray,
-             fill opacity=0.},color=mygray,opacity=0.,very thick,mark size=4pt,
-             empty legend] 
+    \addplot[mark=none,opacity=0.] 
          table[x=ka,y=dd] {\data};    
 
-
-    \addplot[mark=square*,solid,every mark/.append style={solid, fill=mygray, 
-             fill opacity=0.},color=mygray,opacity=0.,very thick,mark size=4pt,
-             empty legend] 
+    \addplot[mark=none,opacity=0.] 
          table[x=ka,y=dq] {\data};    
 
     \legend{LU-IR, \phantom{$u_{p}=$ \textsc{s}}, \phantom{$u_{p}=$
@@ -45,15 +36,11 @@
         table[x=ka,y=lu] {\data}; 
 
 
-    \addplot[mark=x,solid,every mark/.append style={solid,fill=mygray, 
-             fill opacity=0.},color=mygray,opacity=0.,very thick,mark size=4pt,
-             empty legend] 
+    \addplot[mark=none,opacity=0.] 
          table[x=ka,y=ds] {\data};    
 
 
-    \addplot[mark=triangle*,solid,every mark/.append style={solid, fill=mygray,
-             fill opacity=0.},color=mygray,opacity=0.,very thick,mark size=4pt,
-             empty legend] 
+    \addplot[mark=none,opacity=0.] 
          table[x=ka,y=dd] {\data};    
 
 
@@ -70,9 +57,7 @@
         table[x=ka,y=lu] {\data}; 
 
 
-    \addplot[mark=x,solid,every mark/.append style={solid,fill=mygray, 
-             fill opacity=0.},color=mygray,opacity=0.,very thick,mark size=4pt,
-             empty legend] 
+    \addplot[mark=none,opacity=0.] 
          table[x=ka,y=ds] {\data};    
 
 
@@ -118,13 +103,13 @@
 {\begin{tikzpicture}
     \begin{axis}
     [
-        legend style={at={(0.195,0.65)}, font=\scriptsize},
+        legend style={fill=none, text=fg, draw=fg, at={(0.18,0.65)}, font=\scriptsize},
         axis x line=left,
         axis y line=middle,
-        grid = major,
+        xmajorgrids,
         width=1.1\linewidth,
         height=0.4\linewidth,
-        grid style={dashed, gray!50},
+        grid style={dashed, mygray},
         xmin= 1e0,
         xmax= 1e17,
         xmode=log,
@@ -134,10 +119,14 @@
         ymax= 1.,
         ytick={0.2, 0.4, 0.6, 0.8, 1},
         yticklabels={20\%, 40\%, 60\%, 80\%, 100\%},
-        xlabel=K(A),
+        xlabel=$\kappa(A)$,
         tick align=outside,
         enlargelimits=false,
-        title={\phantom{$S$}$u_g=$ \textsc{d}}
+        title={\phantom{$S$}$u_g=$ \textsc{d}},
+        title style = {fg},
+        axis line style={fg},
+        every axis label/.append style ={fg},
+        every tick label/.append style={fg} 
     ]
 
     \whichplot
@@ -148,10 +137,10 @@
 \begin{tikzpicture}
     \begin{axis}
     [
-        legend style={at={(0.195,0.65)}, font=\scriptsize},
+        legend style={fill=none, text=fg, draw=fg, at={(0.18,0.65)}, font=\scriptsize},
         axis x line=left,
         axis y line=middle,
-        grid = major,
+        xmajorgrids,
         width=1.1\linewidth,
         height=0.4\linewidth,
         grid style={dashed, gray!50},
@@ -164,11 +153,30 @@
         ymax= 1.,
         ytick={0.2, 0.4, 0.6, 0.8, 1},
         yticklabels={20\%, 40\%, 60\%, 80\%, 100\%},
-        xlabel=K(A),
+        xlabel=$\kappa(A)$,
         tick align=outside,
         enlargelimits=false,
-        title={\phantom{$S$}$u_g=$ \textsc{s}}
+        title={\phantom{$S$}$u_g=$ \textsc{s}},
+        title style = {fg},
+        axis line style={fg},
+        every axis label/.append style ={fg},
+        every tick label/.append style={fg} 
     ]
+
+        \addplot[mark=x,solid,every mark/.append style={solid,fill=mygray, 
+                 fill opacity=0.},color=mygray,very thick,
+                 mark size=4pt,forget plot] 
+             table[x=ka,y=ds] {\data};    
+
+        \addplot[mark=triangle*,solid,every mark/.append style={solid, 
+                 fill=mygray, fill opacity=0.},color=mygray,
+                 very thick,mark size=4pt,forget plot] 
+             table[x=ka,y=dd] {\data};    
+
+        \addplot[mark=square*,solid,every mark/.append style={solid, 
+                 fill=mygray, fill opacity=0.},color=mygray,
+                 very thick,mark size=4pt,forget plot] 
+             table[x=ka,y=dq] {\data};
 
         \addplot[mark=*,solid,every mark/.append style={solid, fill=mypurple, 
                  fill opacity=0.2},color=mypurple,very thick,mark size=4pt] 
@@ -188,21 +196,6 @@
                  mark size=4pt] 
              table[x=ka,y=sq] {\data};    
 
-        \addplot[mark=x,solid,every mark/.append style={solid,fill=mygray, 
-                 fill opacity=0.},color=gray,draw opacity = 0.3,very thick,
-                 mark size=4pt,forget plot] 
-             table[x=ka,y=ds] {\data};    
-
-        \addplot[mark=triangle*,solid,every mark/.append style={solid, 
-                 fill=mygray, fill opacity=0.},color=gray,draw opacity = 0.3,
-                 very thick,mark size=4pt,forget plot] 
-             table[x=ka,y=dd] {\data};    
-
-        \addplot[mark=square*,solid,every mark/.append style={solid, 
-                 fill=mygray, fill opacity=0.},color=gray,draw opacity = 0.3,
-                 very thick,mark size=4pt,forget plot] 
-             table[x=ka,y=dq] {\data};
-
             \legend{LU-IR, $u_p=$ \textsc{s}, $u_p=$ \textsc{d}, $u_p=$
                     \textsc{q}}
     \end{axis}
@@ -211,10 +204,10 @@
 \begin{tikzpicture}
     \begin{axis}
     [
-        legend style={at={(0.195,0.65)}, font=\scriptsize},
+        legend style={fill=none, text=fg, draw=fg, at={(0.18,0.65)}, font=\scriptsize},
         axis x line=left,
         axis y line=middle,
-        grid = major,
+        xmajorgrids,
         width=1.1\linewidth,
         height=0.4\linewidth,
         grid style={dashed, gray!50},
@@ -227,11 +220,30 @@
         ymax= 1.,
         ytick={0.2, 0.4, 0.6, 0.8, 1},
         yticklabels={20\%, 40\%, 60\%, 80\%, 100\%},
-        xlabel=K(A),
+        xlabel=$\kappa(A)$,
         tick align=outside,
         enlargelimits=false,
-        title={\phantom{$S$}$u_g=$ \textsc{h}}
+        title={\phantom{$S$}$u_g=$ \textsc{h}},
+        title style = {fg},
+        axis line style={fg},
+        every axis label/.append style ={fg},
+        every tick label/.append style={fg} 
     ]
+
+        \addplot[mark=x,solid,every mark/.append style={solid,fill=mygray, 
+                 fill opacity=0.},color=mygray,very thick,
+                 mark size=4pt,forget plot] 
+             table[x=ka,y=ds] {\data};    
+
+        \addplot[mark=triangle*,solid,every mark/.append style={solid,
+                 fill=mygray, fill opacity=0.},color=mygray,
+                 very thick,mark size=4pt,forget plot] 
+             table[x=ka,y=dd] {\data};    
+
+        \addplot[mark=square*,solid,every mark/.append style={solid,
+                 fill=mygray, fill opacity=0.},color=mygray,
+                 very thick,mark size=4pt,forget plot] 
+             table[x=ka,y=dq] {\data};
 
         \addplot[mark=*,solid,every mark/.append style={solid, fill=mypurple,
                  fill opacity=0.2},color=mypurple,very thick,mark size=4pt] 
@@ -250,21 +262,6 @@
                  fill=myred, fill opacity=0.2},color=myred,very thick,
                  mark size=4pt] 
              table[x=ka,y=hq] {\data};    
-
-        \addplot[mark=x,solid,every mark/.append style={solid,fill=mygray, 
-                 fill opacity=0.},color=gray,draw opacity = 0.3,very thick,
-                 mark size=4pt,forget plot] 
-             table[x=ka,y=ds] {\data};    
-
-        \addplot[mark=triangle*,solid,every mark/.append style={solid,
-                 fill=mygray, fill opacity=0.},color=gray,draw opacity = 0.3,
-                 very thick,mark size=4pt,forget plot] 
-             table[x=ka,y=dd] {\data};    
-
-        \addplot[mark=square*,solid,every mark/.append style={solid,
-                 fill=mygray, fill opacity=0.},color=gray,draw opacity = 0.3,
-                 very thick,mark size=4pt,forget plot] 
-             table[x=ka,y=dq] {\data};
 
             \legend{LU-IR, $u_p=$ \textsc{s}, $u_p=$ \textsc{d}, $u_p=$
                     \textsc{q}}

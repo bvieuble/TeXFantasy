@@ -1,8 +1,8 @@
 %%% Compiled with XeLaTeX
 %%% TeX-command-extra-options: "-shell-escape"
 \documentclass[convert={outext=.png},border=10pt]{standalone}
-%\usepackage{fontspec}
-%\setmainfont{Roboto Light}
+\usepackage{fontspec}
+\setmainfont{Roboto}
 \usepackage{tikz}
 \usepackage{pgfplots, pgfplotstable}
 \pgfplotsset{compat=newest}
@@ -18,7 +18,7 @@
         width=1.\linewidth,
         height=0.6\linewidth,
         grid,
-        grid style={dashed, mygray-light},
+        grid style={dashed, mygray},
         xmin= 1.,
         xmax= 1e20,
         xmode=log,
@@ -29,18 +29,21 @@
         ylabel=Scaled condition number $\kappa(A_s)$,
         enlargelimits=false,
         colormap={}{color={myblue} color={mypurple} color={myyellow} 
-                    color=(myred) color=(myred) color=(myred)}
+                    color=(myred) color=(myred) color=(myred)},
+        axis line style={fg},
+        every axis label/.append style ={fg},
+        every tick label/.append style={fg} 
     ]
 
         \addplot[scatter,very thick,only marks,clip mode=individual,
                  mark size=2pt,fill opacity=0.2,mark=*] 
             table[x=kbef,y=kaft] {\data};
 
-        \draw[black, thick]
+        \draw[fg, thick]
             (axis cs:1e0,1e0) -- 
             (axis cs:1e20,1e20);
 
-        \node[rotate=30] at (5e11,5e12) (id) {$\kappa(A)=\kappa(A_s)$};
+        \node[rotate=30,fg] at (5e11,5e12) (id) {$\kappa(A)=\kappa(A_s)$};
     \end{axis}
 \end{tikzpicture}
 

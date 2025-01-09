@@ -1,8 +1,8 @@
 %%% Compiled with XeLaTeX
 %%% TeX-command-extra-options: "-shell-escape"
 \documentclass[convert={outext=.png},border=10pt]{standalone}
-% \usepackage{fontspec}
-% \setmainfont{Roboto Light}
+\usepackage{fontspec}
+\setmainfont{Roboto}
 \usepackage{tikz}
 \usepackage{pgfplots, pgfplotstable}
 \usepackage{makecell}
@@ -17,7 +17,8 @@
 \begin{tikzpicture}
     \begin{axis}
     [
-        legend style={at={(0.4,0.95)},font=\small},
+        legend columns = -1,
+        legend style={fill=none, text=fg, draw=fg, at={(0.5,1.25)},font=\small,anchor=center},
         grid = major,
         width=1.\linewidth,
         height=0.6\linewidth,
@@ -40,7 +41,10 @@
         yticklabel style={rotate=0},
         tick align=outside,
         every tick label/.append style={font=\normalsize},
-        enlargelimits=false
+        enlargelimits=false,
+        axis line style={fg},
+        every axis label/.append style ={fg},
+        every tick label/.append style={fg} 
     ]
 
         \addplot[mygreen-mild,only marks,mark size=3pt] 
@@ -52,7 +56,7 @@
                  visualization depends on={\thisrow{angle} \as \angle},
                  visualization depends on={\thisrow{xshift} \as \xshift},
                  visualization depends on={\thisrow{yshift} \as \yshift},
-                 every node near coord/.append style={color=black,
+                 every node near coord/.append style={color=fg,
                                                       rotate=\angle,
                                                       xshift=\xshift,
                                                       yshift=\yshift,
@@ -65,12 +69,12 @@
         \addplot[myred-mild,only marks,mark size=3pt] 
                  table[x=ka,y=fwdsdqdd] {\data};
 
-        \draw[dashed,thick] (axis cs:2E+7,0) -- (axis cs:2E+7,1E-18);
-        \draw[dashed,thick] (axis cs:1E+10,0) -- (axis cs:1E+10,1E-18);
+        \draw[solid,very thick,fg] (axis cs:2E+7,0) -- (axis cs:2E+7,1E-18);
+        \draw[solid,very thick,fg] (axis cs:1E+10,0) -- (axis cs:1E+10,1E-18);
 
-        \legend{{DMUMPS},
-                {LU, $u_f=u_r$=\textsc{d}},
-                {LU, $u_f$=\textsc{s}, $u_r$=\textsc{q}},
+        \legend{{DMUMPS\;},
+                {LU, $u_f=u_r$=\textsc{d}\;},
+                {LU, $u_f$=\textsc{s}, $u_r$=\textsc{q}\;},
                 {GMRES, $u_f$=\textsc{s}, $u_r$=\textsc{q}}}
     \end{axis}
 \end{tikzpicture}

@@ -1,8 +1,8 @@
 %%% Compiled with XeLaTeX
 %%% TeX-command-extra-options: "-shell-escape"
 \documentclass[convert={outext=.png},border=10pt]{standalone}
-%\usepackage{fontspec}
-%\setmainfont{Roboto Light}
+\usepackage{fontspec}
+\setmainfont{Roboto}
 \usepackage{tikz}
 \usepackage{pgfplots, pgfplotstable}
 \usepackage{booktabs}
@@ -24,8 +24,11 @@
 \pgfplotstablegetrowsof{\data}
 \pgfmathsetmacro{\N}{\pgfplotsretval-1}  
 
+\definecolor{fg}{RGB}{150,150,150}
+
 \begin{document}
 
+{\color{fg}
 \pgfplotstabletypeset[col sep=comma,
                       string type,
                       font=\small,
@@ -138,4 +141,5 @@
                       },
                       every last row/.style={after row=\bottomrule}
                       ]{\data}
+}
 \end{document}

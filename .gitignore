@@ -280,3 +280,9 @@ TSWLatexianTemp*
 web/
 
 note.txt
+
+# folder for front image
+front/
+
+# PNG files
+*.png

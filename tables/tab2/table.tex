@@ -1,8 +1,8 @@
 %%% Compiled with XeLaTeX
 %%% TeX-command-extra-options: "-shell-escape"
 \documentclass[convert={outext=.png},border=10pt]{standalone}
-%\usepackage{fontspec}
-%\setmainfont{Roboto Light}
+\usepackage{fontspec}
+\setmainfont{Roboto}
 \usepackage{tikz}
 \usepackage{pgfplots, pgfplotstable}
 \usepackage{colortbl}
@@ -10,9 +10,12 @@
 \usepackage{makecell}
 \pgfplotsset{compat=newest}
 
+\definecolor{fg}{RGB}{150,150,150}
+
 \begin{document}
 \pgfplotstableread[col sep=comma]{data.csv}{\data}
 
+{\color{fg}
 \pgfplotstabletypeset[col sep=comma,
                       string type,
                       font=\normalsize,
@@ -40,5 +43,5 @@
                                                column type={r}},
                       every last row/.style={after row=\bottomrule}
                       ]{\data}
-
+}
 \end{document}
