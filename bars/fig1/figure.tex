@@ -32,12 +32,12 @@
 \pgfmathsetmacro{\nbrowsc}{\pgfplotsretval}
 
 \begin{document}
-\begin{tikzpicture}
+\begin{tikzpicture}[fg]
     \begin{axis}
     [
         point meta=explicit symbolic,
         nodes near coords,
-        every node near coord/.append style={text=fg,font=\normalsize,above},
+        every node near coord/.append style={font=\normalsize,above},
         legend style={fill=none, text=fg, draw=fg, at={(0.75,0.95)},
         anchor=north,legend columns=-1},
         ybar stacked,
@@ -61,10 +61,7 @@
         ytick={0, 0.25, 0.5, 0.75, 1, 2},
         yticklabels={0, 0.25, 0.5, 0.75, 1, 2},
         name=axis1,
-        at={(0,0)},
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+        at={(0,0)}
     ]
 
         \pgfplotsinvokeforeach{0,...,\nbrowsa-1} 
@@ -133,7 +130,7 @@
     [
         point meta=explicit symbolic,
         nodes near coords,
-        every node near coord/.append style={text=fg,font=\normalsize,above},
+        every node near coord/.append style={font=\normalsize,above},
         ybar stacked,
         ymajorgrids,
         width=1.1\linewidth,
@@ -152,10 +149,7 @@
         ytick={0, 0.25, 0.5, 0.75, 1, 2},
         yticklabels={0, 0.25, 0.5, 0.75, 1, 2},
         name=axis2,
-        at={(0,-0.45\linewidth)},
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+        at={(0,-0.45\linewidth)}
     ]
 
         \pgfplotsinvokeforeach{0,...,\nbrowsb-1} {
@@ -217,7 +211,7 @@
                     table[x expr=\coordindex,y=aq] {\groupb};
     \end{axis}
 
-    \node[rectangle,draw,fg,inner sep=1pt] at (2,3.75) (box) 
+    \node[rectangle,draw,inner sep=1pt] at (2,3.75) (box) 
         {\small
         \begin{tabular}{l}
             \small C: LU, $u_f$=\textsc{d} \\

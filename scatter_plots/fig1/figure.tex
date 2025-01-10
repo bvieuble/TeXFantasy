@@ -12,7 +12,7 @@
 \begin{document}
 \pgfplotstableread[col sep=comma]{data.csv}{\data}
 
-\begin{tikzpicture}
+\begin{tikzpicture}[fg]
     \begin{axis}
     [
         width=1.\linewidth,
@@ -29,21 +29,18 @@
         ylabel=Scaled condition number $\kappa(A_s)$,
         enlargelimits=false,
         colormap={}{color={myblue} color={mypurple} color={myyellow} 
-                    color=(myred) color=(myred) color=(myred)},
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+                    color=(myred) color=(myred) color=(myred)}
     ]
 
         \addplot[scatter,very thick,only marks,clip mode=individual,
                  mark size=2pt,fill opacity=0.2,mark=*] 
             table[x=kbef,y=kaft] {\data};
 
-        \draw[fg, thick]
+        \draw[thick]
             (axis cs:1e0,1e0) -- 
             (axis cs:1e20,1e20);
 
-        \node[rotate=30,fg] at (5e11,5e12) (id) {$\kappa(A)=\kappa(A_s)$};
+        \node[rotate=30] at (5e11,5e12) (id) {$\kappa(A)=\kappa(A_s)$};
     \end{axis}
 \end{tikzpicture}
 

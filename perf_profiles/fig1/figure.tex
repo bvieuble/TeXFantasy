@@ -12,7 +12,7 @@
 \pgfplotstableread[col sep=comma]{data.csv}{\data}
 
 \begin{document}
-\begin{tikzpicture}
+\begin{tikzpicture}[fg]
     \begin{axis}
     [
         legend columns = -1,
@@ -36,10 +36,7 @@
         ytick={0.2, 0.4, 0.6, 0.8, 1},
         yticklabels={0.2, 0.4, 0.6, 0.8, 1},
         grid = major,
-        grid style={dashed, mygray},
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+        grid style={dashed, mygray}
     ]
 
         \addplot[const plot mark mid,solid,color=myorange,very thick] 

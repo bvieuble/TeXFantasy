@@ -15,7 +15,7 @@
 \begin{document}
 \pgfplotstableread[col sep=comma]{data.csv}{\data}
 
-{\color{fg}
+\color{fg}
 \pgfplotstabletypeset[col sep=comma,
                       string type,
                       font=\normalsize,
@@ -43,5 +43,4 @@
                                                column type={r}},
                       every last row/.style={after row=\bottomrule}
                       ]{\data}
-}
 \end{document}

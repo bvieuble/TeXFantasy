@@ -12,7 +12,7 @@
 \begin{document}
 \pgfplotstableset{col sep=comma}
 
-\begin{tikzpicture}
+\begin{tikzpicture}[fg]
     \begin{axis}
     [
         axis x line=left,
@@ -35,11 +35,7 @@
         enlargelimits=false,
         colormap={whiteblue}{color={myblue} color=(myred)},
         title={LU},
-        title style = {fg},
-        at={(0, 0)},
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+        at={(0, 0)}
     ]
 
         \addplot[scatter,mark=*,solid,
@@ -71,11 +67,7 @@
         enlargelimits=false,
         colormap={whiteblue}{color={myblue} color=(myred)},
         title=\textsc{hhs},
-        title style = {fg},
-        at={(0.5\linewidth, 0)},
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+        at={(0.5\linewidth, 0)}
     ]
 
         \addplot[scatter,mark=*,solid,
@@ -107,11 +99,7 @@
         enlargelimits=false,
         colormap={whiteblue}{color={myblue} color=(myred)},
         title=\textsc{hss},
-        title style = {fg},
-        at={(0, -0.3\linewidth)},
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+        at={(0, -0.3\linewidth)}
     ]
 
         \addplot[scatter,mark=*,solid,
@@ -143,11 +131,7 @@
         enlargelimits=false,
         colormap={whiteblue}{color={myblue} color=(myred)},
         title=\textsc{hsd},
-        title style = {fg},
-        at={(0.5\linewidth, -0.3\linewidth)},
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+        at={(0.5\linewidth, -0.3\linewidth)}
     ]
 
         \addplot[scatter,mark=*,solid,
@@ -179,11 +163,7 @@
         enlargelimits=false,
         colormap={whiteblue}{color={myblue} color=(myred)},
         title=\textsc{hdd},
-        title style = {fg},
-        at={(0, -0.6\linewidth)},
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+        at={(0, -0.6\linewidth)}
     ]
 
         \addplot[scatter,mark=*,solid,
@@ -215,11 +195,7 @@
         enlargelimits=false,
         colormap={whiteblue}{color={myblue} color=(myred)},
         title=\textsc{hdq}, 
-        title style = {fg},
-        at={(0.5\linewidth, -0.6\linewidth)},
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+        at={(0.5\linewidth, -0.6\linewidth)}
     ]
 
         \addplot[scatter,mark=*,solid,
@@ -229,5 +205,4 @@
              table[x=ka,y=hdqdq] {data.csv};
     \end{axis}
 \end{tikzpicture}
-
 \end{document}

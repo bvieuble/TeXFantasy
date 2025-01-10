@@ -15,83 +15,83 @@
 
 \newcommand{\plota}{
   \addplot[myblue,no marks,domain=-0.5:9,thick] {0.5*x - 0.75};
-  \node[rotate=20,fg] at (axis cs:6,2.6) {$f(x) = Ax-b$};
+  \node[rotate=20] at (axis cs:6,2.6) {$f(x) = Ax-b$};
 }
 \newcommand{\plotb}{
     \addplot[myblue,no marks,domain=-0.5:9,thick] {0.5*x - 0.75};
-    \draw [dashed,thick,fg] (axis cs:{8,0}) -- (axis cs:{8,3.2});
+    \draw [dashed,thick] (axis cs:{8,0}) -- (axis cs:{8,3.2});
 	\addplot [only marks,mygreen,mark=*] coordinates { (8,3.25) };
     \node at (axis cs:8,3.7) {$\alertgm{f(x_0)}$};
-    \node[rotate=20,fg] at (axis cs:6,2.6) {$f(x) = Ax-b$};
+    \node[rotate=20] at (axis cs:6,2.6) {$f(x) = Ax-b$};
 }
 \newcommand{\plotc}{
     \addplot[myblue,no marks,domain=-0.5:9,thick] {0.5*x - 0.75};
-    \draw [dashed,thick,fg] (axis cs:{8,0}) -- (axis cs:{8,2.9});
+    \draw [dashed,thick] (axis cs:{8,0}) -- (axis cs:{8,2.9});
 	\addplot [only marks,myred,mark=*] coordinates { (8,2.9) };
     \node at (axis cs:8.6,2.9) {$\alertrm{\widehat{f}(x_0)}$};
-    \node[rotate=20,fg] at (axis cs:6,2.6) {$f(x) = Ax-b$};
+    \node[rotate=20] at (axis cs:6,2.6) {$f(x) = Ax-b$};
 }
 \newcommand{\plotd}{
     \addplot[myblue,no marks,domain=-0.5:9,thick] {0.5*x - 0.75};
     \addplot[mygreen,no marks,domain=-0.5:9,thick,restrict y to domain={-1:5}] 
     {0.5*x - 1.1};
-	\addplot [only marks,mark=*,fg] coordinates { (8,2.9) };
+	\addplot [only marks,mark=*] coordinates { (8,2.9) };
     \node[rotate=25] at (axis cs:7,2) {$\alertgm{\nabla f(x_0)}$};
-    \node[rotate=20,fg] at (axis cs:6,2.6) {$f(x) = Ax-b$};
+    \node[rotate=20] at (axis cs:6,2.6) {$f(x) = Ax-b$};
 }
 \newcommand{\plote}{
     \addplot[myblue,no marks,domain=-0.5:9,thick] {0.5*x - 0.75};
     \addplot[myred,no marks,domain=-0.5:9,thick,restrict y to domain={-1:5}]
     {0.65*x - 2.3};
-	\addplot [only marks,mark=*,fg] coordinates { (8,2.9) };
+	\addplot [only marks,mark=*] coordinates { (8,2.9) };
     \node[rotate=30] at (axis cs:7.1,1.9) {$\alertrm{\widehat{\nabla} 
     f(x_0)}$};
-    \node[rotate=20,fg] at (axis cs:6,2.6) {$f(x) = Ax-b$};
+    \node[rotate=20] at (axis cs:6,2.6) {$f(x) = Ax-b$};
 }
 \newcommand{\plotf}{
     \addplot[myblue,no marks,domain=-0.5:9,thick] {0.5*x - 0.75};
-    \addplot[no marks,domain=-0.5:9,thick,restrict y to domain={-1:5},fg]
+    \addplot[no marks,domain=-0.5:9,thick,restrict y to domain={-1:5}]
     {0.65*x - 2.3};
 	\addplot [only marks,mygreen,mark=*] coordinates { (3.55,0) };
-    \node[rotate=20,fg] at (axis cs:6,2.6) {$f(x) = Ax-b$};
+    \node[rotate=20] at (axis cs:6,2.6) {$f(x) = Ax-b$};
     \node at (axis cs:3.55,-0.4) {\large \alertgm{$x_{1}$}};
 }
 \newcommand{\plotg}{
     \addplot[myblue,no marks,domain=-0.5:9,thick] {0.5*x - 0.75};
-    \addplot[no marks,domain=-0.5:9,thick,restrict y to domain={-1:5},fg]
+    \addplot[no marks,domain=-0.5:9,thick,restrict y to domain={-1:5}]
     {0.65*x - 2.3};
 	\addplot [only marks,myred,mark=*] coordinates { (3.9,0) };
-    \node[rotate=20,fg] at (axis cs:6,2.6) {$f(x) = Ax-b$};
+    \node[rotate=20] at (axis cs:6,2.6) {$f(x) = Ax-b$};
     \node at (axis cs:3.9,-0.4) {\large \alertrm{$\widehat{x}_{1}$}};
 }
 \newcommand{\ploth}{
     \addplot[myblue,no marks,domain=-0.5:9,thick] {0.5*x - 0.75};
-    \draw [dashed,thick,fg] (axis cs:{3.9,0}) -- (axis cs:{3.9,1.6});
-	\addplot [only marks,mark=*,fg] coordinates { (3.9,1.6) };
-    \node[fg] at (axis cs:3.9,2.1) {$\widehat{f}(x_1)$};
-	\addplot [only marks,mark=|,fg] coordinates { (3.9,0) };
-    \node[fg] at (axis cs:3.9,-0.4) {\large $\widehat{x}_{1}$};
+    \draw [dashed,thick] (axis cs:{3.9,0}) -- (axis cs:{3.9,1.6});
+	\addplot [only marks,mark=*] coordinates { (3.9,1.6) };
+    \node at (axis cs:3.9,2.1) {$\widehat{f}(x_1)$};
+	\addplot [only marks,mark=|] coordinates { (3.9,0) };
+    \node at (axis cs:3.9,-0.4) {\large $\widehat{x}_{1}$};
 }
 \newcommand{\ploti}{
     \addplot[myblue,no marks,domain=-0.5:9,thick] {0.5*x - 0.75};
-    \addplot[no marks,domain=-0.5:9,thick,fg] {0.45*x - 0.155};
-  	\addplot [only marks,mark=*,fg] coordinates { (3.9,1.6) };
-    \node[rotate=20,fg] at (axis cs:2.7,1.5) {$\widehat{\nabla}f(x_1)$};
-	\addplot [only marks,mark=|,fg] coordinates { (3.9,0) };
-    \node[fg] at (axis cs:3.9,-0.4) {\large $\widehat{x}_{1}$};
+    \addplot[no marks,domain=-0.5:9,thick] {0.45*x - 0.155};
+  	\addplot [only marks,mark=*] coordinates { (3.9,1.6) };
+    \node[rotate=20] at (axis cs:2.7,1.5) {$\widehat{\nabla}f(x_1)$};
+	\addplot [only marks,mark=|] coordinates { (3.9,0) };
+    \node at (axis cs:3.9,-0.4) {\large $\widehat{x}_{1}$};
 }
 \newcommand{\plotj}{
     \addplot[myblue,no marks,domain=-0.5:9,thick] {0.5*x - 0.75};
-    \addplot[no marks,domain=-0.5:9,thick,fg] {0.45*x - 0.155};
-	\addplot [only marks,mark=*,fg] coordinates { (0.7,0) };
-    \node[fg] at (axis cs:0.7,-0.4) {\large $\widehat{x}_{2}$};
-	\addplot [only marks,mark=|,fg] coordinates { (3.9,0) };
-    \node[fg] at (axis cs:3.9,-0.4) {\large $\widehat{x}_{1}$};
+    \addplot[no marks,domain=-0.5:9,thick] {0.45*x - 0.155};
+	\addplot [only marks,mark=*] coordinates { (0.7,0) };
+    \node at (axis cs:0.7,-0.4) {\large $\widehat{x}_{2}$};
+	\addplot [only marks,mark=|] coordinates { (3.9,0) };
+    \node at (axis cs:3.9,-0.4) {\large $\widehat{x}_{1}$};
 }
 
 \foreach \whichplot in
     {\plota,\plotb,\plotc,\plotd,\plote,\plotf,\plotg,\ploth,\ploti,\plotj}
-{\begin{tikzpicture}
+{\begin{tikzpicture}[fg]
     \begin{axis}
         [
             ymajorticks=false,
@@ -104,10 +104,7 @@
             xmax=9,
             xmin=-0.5,
             axis lines=middle,
-            tick style={very thick},
-            axis line style={fg},
-            every axis label/.append style ={fg},
-            every tick label/.append style={fg} 
+            tick style={very thick}
         ]
 
         \whichplot

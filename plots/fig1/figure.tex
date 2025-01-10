@@ -100,7 +100,7 @@
 }
 
 \foreach \whichplot in {\plota,\plotb,\plotc,\plotd}
-{\begin{tikzpicture}
+{\begin{tikzpicture}[fg]
     \begin{axis}
     [
         legend style={fill=none, text=fg, draw=fg, at={(0.18,0.65)}, font=\scriptsize},
@@ -122,11 +122,7 @@
         xlabel=$\kappa(A)$,
         tick align=outside,
         enlargelimits=false,
-        title={\phantom{$S$}$u_g=$ \textsc{d}},
-        title style = {fg},
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+        title={\phantom{$S$}$u_g=$ \textsc{d}}
     ]
 
     \whichplot
@@ -134,7 +130,7 @@
 \end{axis}
 \end{tikzpicture}}
 
-\begin{tikzpicture}
+\begin{tikzpicture}[fg]
     \begin{axis}
     [
         legend style={fill=none, text=fg, draw=fg, at={(0.18,0.65)}, font=\scriptsize},
@@ -156,11 +152,7 @@
         xlabel=$\kappa(A)$,
         tick align=outside,
         enlargelimits=false,
-        title={\phantom{$S$}$u_g=$ \textsc{s}},
-        title style = {fg},
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+        title={\phantom{$S$}$u_g=$ \textsc{s}}
     ]
 
         \addplot[mark=x,solid,every mark/.append style={solid,fill=mygray, 
@@ -201,7 +193,7 @@
     \end{axis}
 \end{tikzpicture}
 
-\begin{tikzpicture}
+\begin{tikzpicture}[fg]
     \begin{axis}
     [
         legend style={fill=none, text=fg, draw=fg, at={(0.18,0.65)}, font=\scriptsize},
@@ -223,11 +215,7 @@
         xlabel=$\kappa(A)$,
         tick align=outside,
         enlargelimits=false,
-        title={\phantom{$S$}$u_g=$ \textsc{h}},
-        title style = {fg},
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+        title={\phantom{$S$}$u_g=$ \textsc{h}}
     ]
 
         \addplot[mark=x,solid,every mark/.append style={solid,fill=mygray, 

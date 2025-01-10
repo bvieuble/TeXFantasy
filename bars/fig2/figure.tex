@@ -36,12 +36,12 @@
 \pgfmathsetmacro{\nbrowsd}{\pgfplotsretval}
 
 \begin{document}
-\begin{tikzpicture}
+\begin{tikzpicture}[fg]
     \begin{axis}
     [
         point meta=explicit symbolic,
         nodes near coords,
-        every node near coord/.append style={text=fg,font=\normalsize,above},
+        every node near coord/.append style={font=\normalsize,above},
         legend style={fill=none, text=fg, draw=fg, at={(0.2,0.95),font=\normalsize},
         anchor=north,legend columns=-1},
         ybar stacked,
@@ -62,10 +62,7 @@
         ymax=1.6,
         ytick={0, 0.25, 0.5, 0.75, 1},
         name=axis1,
-        at={(0,0)},
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+        at={(0,0)}
     ]
 
         \pgfplotsinvokeforeach{0,...,\nbrowsa-1} {
@@ -133,7 +130,7 @@
         nodes near coords,
         legend style={at={(0.8,0.95)},
         anchor=north,legend columns=-1},
-        every node near coord/.append style={text=fg,font=\normalsize,above},
+        every node near coord/.append style={font=\normalsize,above},
         ybar stacked,
         ymajorgrids,
         width=1.2\linewidth,
@@ -153,10 +150,7 @@
         ytick={0, 0.5, 1, 2},
         yticklabels={0, 0.5, 1, 2},
         name=axis2,
-        at={(0,-0.45\linewidth)},
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+        at={(0,-0.45\linewidth)}
     ]
 
         \pgfplotsinvokeforeach{0,...,\nbrowsb-1} {
@@ -217,7 +211,7 @@
 
     \end{axis}
 
-    \node[rectangle,draw=fg,text=fg,inner sep=1pt,fill=none] at (8.5,4) (box) {\small
+    \node[rectangle,draw=fg,inner sep=1pt,fill=none] at (8.5,4) (box) {\small
         \begin{tabular}{ll}
             \small A: LU, $u_f$=\textsc{s}, $u_r$=\textsc{d} & \small B: GMRES,
             $u_f$=\textsc{s}, $u_r$=\textsc{d} \\
@@ -226,7 +220,6 @@
             & \small E: GMRES, $u_f$=\textsc{s}, $u_r$=\textsc{q}
         \end{tabular}
         };
-
 
     \node[draw=fg, text=fg, rotate=90, single arrow, fill=fg, scale=0.2] at
         (7.125,-0.95) 

@@ -14,7 +14,7 @@
 
 \begin{document}
 
-\begin{tikzpicture}
+\begin{tikzpicture}[fg]
     \begin{axis}
     [
         legend columns = -1,
@@ -41,10 +41,7 @@
         yticklabel style={rotate=0},
         tick align=outside,
         every tick label/.append style={font=\normalsize},
-        enlargelimits=false,
-        axis line style={fg},
-        every axis label/.append style ={fg},
-        every tick label/.append style={fg} 
+        enlargelimits=false
     ]
 
         \addplot[mygreen-mild,only marks,mark size=3pt] 
@@ -56,8 +53,7 @@
                  visualization depends on={\thisrow{angle} \as \angle},
                  visualization depends on={\thisrow{xshift} \as \xshift},
                  visualization depends on={\thisrow{yshift} \as \yshift},
-                 every node near coord/.append style={color=fg,
-                                                      rotate=\angle,
+                 every node near coord/.append style={rotate=\angle,
                                                       xshift=\xshift,
                                                       yshift=\yshift,
                                                       font=\normalsize}] 
@@ -69,8 +65,8 @@
         \addplot[myred-mild,only marks,mark size=3pt] 
                  table[x=ka,y=fwdsdqdd] {\data};
 
-        \draw[solid,very thick,fg] (axis cs:2E+7,0) -- (axis cs:2E+7,1E-18);
-        \draw[solid,very thick,fg] (axis cs:1E+10,0) -- (axis cs:1E+10,1E-18);
+        \draw[solid,very thick] (axis cs:2E+7,0) -- (axis cs:2E+7,1E-18);
+        \draw[solid,very thick] (axis cs:1E+10,0) -- (axis cs:1E+10,1E-18);
 
         \legend{{DMUMPS\;},
                 {LU, $u_f=u_r$=\textsc{d}\;},
