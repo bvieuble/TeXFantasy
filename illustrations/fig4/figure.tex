@@ -1,8 +1,8 @@
 %%% Compiled with XeLaTeX
 %%% TeX-command-extra-options: "-shell-escape"
 \documentclass[convert={outext=.png},border=10pt]{standalone}
-% \usepackage{fontspec}
-% \setmainfont{Roboto Light}
+\usepackage{fontspec}
+\setmainfont{Roboto}
 \usepackage{tikz}
 \usetikzlibrary{positioning,patterns,patterns.meta}
 
@@ -26,7 +26,7 @@
   }
 }
 
-\begin{tikzpicture}
+\begin{tikzpicture}[fg]
     \node[] (step1) at (-0.5,0.25) {1 :};
     \node[] (step2) at (-0.5,-0.75) {2 :};
 
@@ -45,7 +45,7 @@
         size=10pt, hatch linewidth=0.75pt, hatch angle=10]},pattern 
         color=myblue2] (0,0) rectangle ++(10,0.5);
     \draw[draw=none,thick] (10,0) rectangle ++(2,0.5);
-    \draw[draw=black,thick,fill=none] (0,0) rectangle ++(12,0.5);
+    \draw[draw=fg,thick,fill=none] (0,0) rectangle ++(12,0.5);
 
 
     \draw[draw=none,thick,fill=myred-light] (0,-1) rectangle ++(4,0.5);
@@ -53,6 +53,6 @@
     \draw[draw=none,pattern={hatch[hatch size=10pt, hatch linewidth=0.75pt, 
         hatch angle=10]},pattern color=myblue2] (0,-1) rectangle ++(8,0.5);
     \draw[draw=none,thick] (10,-1) rectangle ++(2,0.5);
-    \draw[thick,fill=none,draw=black] (0,-1) rectangle ++(12,0.5);
+    \draw[thick,fill=none,draw=fg] (0,-1) rectangle ++(12,0.5);
 \end{tikzpicture}
 \end{document}

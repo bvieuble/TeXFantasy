@@ -18,6 +18,11 @@ on my website: https://bvieuble.github.io/texfantasy/
   <img src="assets/fig9-front.png" width="250" /> 
 </p>
 
+<p align="center">
+  <img src="assets/light.png" width="500" />
+  <img src="assets/dark.png" width="500" /> 
+</p>
+
 
 I am opinionated on how figures and plots should be drawn, which should be of course in LaTeX, but I willingly admit that the learning curve for using these tools is steep. Even experienced Tikz/Pgfplots users will probably be slower in using Latex than using Matplotlib in Matlab for the plots. However, if you fall into this rabbit hole, you might never turn back.
 

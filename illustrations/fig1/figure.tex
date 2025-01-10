@@ -2,8 +2,8 @@
 %%% TeX-command-extra-options: "-shell-escape"
 %%% Copy of an illustration in https://jasss.soc.surrey.ac.uk/9/4/4.html
 \documentclass[convert={outext=.png},border=10pt]{standalone}
-% \usepackage{fontspec}
-% \setmainfont{Roboto Light}
+\usepackage{fontspec}
+\setmainfont{Roboto}
 \usepackage{tikz} 
 \usetikzlibrary{calc,arrows.meta}
 
@@ -11,11 +11,11 @@
 
 \begin{document}
 
-\tikzstyle{descript} = [text=black,align=center, minimum height=1.8cm, 
+\tikzstyle{descript} = [text=fg,align=center, minimum height=1.8cm, 
                         align=center, outer sep=0pt,font=\footnotesize]
 \tikzstyle{activity} = [align=center,outer sep=1pt]
 
-\begin{tikzpicture}[very thick, black, x=0.7cm]\small
+\begin{tikzpicture}[very thick, fg, x=0.7cm]\small
 
     %% Coordinates
     \coordinate (O) at (-1.5,0);
@@ -76,20 +76,20 @@
         };
       
     %% Events
-    \draw[<-,thick,color=black,dashed] ($(E1)+(0,0.1)$) -- ($(E1)+(0,1.5)$) 
-    node [above=0pt,align=center,black] {\scriptsize \textbf{1948} \\ 
+    \draw[<-,thick,color=fg,dashed] ($(E1)+(0,0.1)$) -- ($(E1)+(0,1.5)$) 
+    node [above=0pt,align=center,fg] {\scriptsize \textbf{1948} \\ 
     \scriptsize First \\[-4pt]\scriptsize appearance.};
-    \draw[<-,thick,color=black,dashed] ($(E2)+(0,0.1)$) -- ($(E2)+(0,1.5)$) 
-    node [above=0pt,align=center,black] {\scriptsize \textbf{1963} \\ 
+    \draw[<-,thick,color=fg,dashed] ($(E2)+(0,0.1)$) -- ($(E2)+(0,1.5)$) 
+    node [above=0pt,align=center,fg] {\scriptsize \textbf{1963} \\ 
     \scriptsize First analysis. \\[-4pt]};
-    \draw[<-,thick,color=black,dashed] ($(E3)+(0,0.1)$) -- ($(E3)+(0,1.5)$) 
-    node [above=0pt,align=center,black] {\scriptsize \textbf{1977} \\ 
+    \draw[<-,thick,color=fg,dashed] ($(E3)+(0,0.1)$) -- ($(E3)+(0,1.5)$) 
+    node [above=0pt,align=center,fg] {\scriptsize \textbf{1977} \\ 
     \scriptsize Analysis in \\[-4pt] \scriptsize fixed precision.};
-    \draw[<-,thick,color=black,dashed] ($(E4)+(0,0.1)$) -- ($(E4)+(0,1.5)$) 
-    node [above=0pt,align=center,black] {\scriptsize \textbf{2006} \\ 
+    \draw[<-,thick,color=fg,dashed] ($(E4)+(0,0.1)$) -- ($(E4)+(0,1.5)$) 
+    node [above=0pt,align=center,fg] {\scriptsize \textbf{2006} \\ 
     \scriptsize Low precision \\[-4pt] \scriptsize factorization.};
-    \draw[<-,thick,color=black,dashed] ($(E5)+(0,0.1)$) -- ($(E5)+(0,1.5)$) 
-    node [above=0pt,align=center,black] {\scriptsize \textbf{2018} \\ 
+    \draw[<-,thick,color=fg,dashed] ($(E5)+(0,0.1)$) -- ($(E5)+(0,1.5)$) 
+    node [above=0pt,align=center,fg] {\scriptsize \textbf{2018} \\ 
     \scriptsize Generalized \\[-4pt] \scriptsize analysis.};
 
     %% Arrows

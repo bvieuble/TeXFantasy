@@ -1,15 +1,15 @@
 %%% Compiled with XeLaTeX
 %%% TeX-command-extra-options: "-shell-escape"
 \documentclass[convert={outext=.png},border=10pt]{standalone}
-% \usepackage{fontspec}
-% \setmainfont{Roboto Light}
+\usepackage{fontspec}
+\setmainfont{Roboto}
 \usepackage{tikz}
 
 \input{color_theme.tex}
 
 \begin{document}
 
-\begin{tikzpicture}[scale=0.3]
+\begin{tikzpicture}[scale=0.3,fg]
     \begin{scope}[shift={(0,0)}]
         \fill[myblue-light] (0,0) rectangle (1,2);
         \fill[mygreen-light] (1,0) rectangle (9,2);

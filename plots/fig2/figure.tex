@@ -1,8 +1,8 @@
 %%% Compiled with XeLaTeX
 %%% TeX-command-extra-options: "-shell-escape"
 \documentclass[convert={outext=.png},border=10pt]{standalone}
-% \usepackage{fontspec}
-% \setmainfont{Roboto Light}
+\usepackage{fontspec}
+\setmainfont{Roboto}
 \usepackage{tikz}
 \usepackage{pgfplots, pgfplotstable}
 \pgfplotsset{compat=newest}
@@ -16,13 +16,13 @@
 
 \begin{document}
 
-\begin{tikzpicture} 
+\begin{tikzpicture}[fg]
     \begin{axis}
     [
-        legend style={at={(.9,.85)}, font=\normalsize},
+        legend style={fill=none, text=fg, draw=fg, at={(.9,.9)}, font=\normalsize},
         axis x line=left,
         axis y line=middle,
-        grid = major,
+        ymajorgrids,
         grid style={dashed, gray!30},
         width=1.\linewidth,
         height=0.375\linewidth,
@@ -77,10 +77,10 @@
 
     \begin{axis}
     [
-        legend style={at={(.9,.85)}, font=\normalsize},
+        legend style={fill=none, text=fg, draw=fg, at={(.9,.9)}, font=\normalsize},
         axis x line=left,
         axis y line=middle,
-        grid = major,
+        ymajorgrids,
         grid style={dashed, gray!30},
         width=1.\linewidth,
         height=0.375\linewidth,
@@ -135,10 +135,10 @@
 
     \begin{axis}
     [
-        legend style={at={(.9,.85)}, font=\normalsize},
+        legend style={fill=none, text=fg, draw=fg, at={(.9,.9)}, font=\normalsize},
         axis x line=left,
         axis y line=middle,
-        grid = major,
+        ymajorgrids,
         grid style={dashed, gray!30},
         width=1.\linewidth,
         height=0.375\linewidth,
@@ -193,10 +193,10 @@
 
     \begin{axis}
     [
-        legend style={at={(.9,.85)}, font=\normalsize},
+        legend style={fill=none, text=fg, draw=fg, at={(.9,.9)}, font=\normalsize},
         axis x line=left,
         axis y line=middle,
-        grid = major,
+        ymajorgrids,
         grid style={dashed, gray!30},
         width=1.\linewidth,
         height=0.375\linewidth,

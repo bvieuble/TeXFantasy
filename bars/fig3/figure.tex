@@ -2,8 +2,8 @@
 %%% Generate the GIF with convert -delay 100 -loop 0 -density 200 -alpha on 
 %%% file.pdf file.gif (package imagemagick is required)
 \documentclass[tikz,border=10pt]{standalone}
-% \usepackage{fontspec}
-% \setmainfont{Roboto Light}
+\usepackage{fontspec}
+\setmainfont{Roboto}
 \usepackage{pgfplots,pgfplotstable}
 \pgfplotsset{compat=newest}
 
@@ -22,7 +22,7 @@
 \begin{document}
 
 \foreach \X in {0,1,2,3,4,5}
-{\begin{tikzpicture} 
+{\begin{tikzpicture}[fg]
     \begin{axis}[
         point meta=explicit symbolic,
         nodes near coords,
@@ -34,7 +34,7 @@
         xmax=\nbrows,
         xtick=data,
         xticklabels from table={\data}{epsilon},
-        x tick label style={font=\tiny},
+        x tick label style={font=\scriptsize},
         x tick style={thick},
         xlabel=$\epsilon_{\mbox{\tiny BLR}}$,
         xlabel style = {at={(axis description cs:1.02,0)},anchor=north east},
@@ -46,7 +46,7 @@
         yticklabels={0\%,25\%,50\%,75\%,100\%},
         y tick label style={font=\scriptsize},
         legend style={nodes={scale=0.7,transform shape},anchor=west,
-            at={(axis cs:1.7,1.4)},legend columns=4,
+            at={(axis cs:1.7,1.4)},legend columns=4,fill=none,text=fg,draw=fg, 
             legend cell align=right, legend image post style={scale=0.5}},
         at={(0,0)},
     ]
@@ -95,13 +95,13 @@
             table[x expr=\coordindex,y=sdddd-gmres,meta=sdddd-gmres-meta] 
             {\data};
 
-        \legend{LU-IR,LU-GMRES-IR,BLR-LU-IR,BLR-LU-GMRES-IR}
+        \legend{LU-IR\;,LU-GMRES-IR\;,BLR-LU-IR\;,BLR-LU-GMRES-IR}
 
         \draw[-,thick,dashed] (axis cs:6,-0.1) edge (axis cs:6,1.1);
         \node[fill=gray!7,rounded corners=5pt] (n1) at (axis cs:0.5,1.3) 
-            {\footnotesize Time};
+            {\footnotesize\color{black} Time};
         \node[fill=gray!7,rounded corners=5pt] (n1) at (axis cs:11.5,1.3) 
-            {\footnotesize Memory};
+            {\footnotesize\color{black} Memory};
     \end{axis}
 \end{tikzpicture}}
 
