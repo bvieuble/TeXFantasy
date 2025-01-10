@@ -5,20 +5,6 @@ from teaching materials to scientific journal articles. The gallery can be found
 on my website: https://bvieuble.github.io/texfantasy/
 
 <p align="center">
-  <img src="assets/fig1-front.png" width="250" />
-  <img src="assets/fig2-front.png" width="250" /> 
-  <img src="assets/fig3-front.png" width="250" /> 
-
-  <img src="assets/fig4-front.png" width="250" />
-  <img src="assets/fig5-front.png" width="250" /> 
-  <img src="assets/fig6-front.png" width="250" /> 
-
-  <img src="assets/fig7-front.png" width="250" />
-  <img src="assets/fig8-front.png" width="250" /> 
-  <img src="assets/fig9-front.png" width="250" /> 
-</p>
-
-<p align="center">
   <img src="assets/light.png" width="500" />
   <img src="assets/dark.png" width="500" /> 
 </p>
