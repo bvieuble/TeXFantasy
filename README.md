@@ -2,7 +2,7 @@
 
 TeXFantasy is a gallery of Latex figures that I used for various documents, 
 from teaching materials to scientific journal articles. The gallery can be found
-on my website: https://bvieuble.github.io/texfantasy/
+on my website: https://bvieuble.me/texfantasy/
 
 <p align="center">
   <img src="assets/light.png" width="400" />
