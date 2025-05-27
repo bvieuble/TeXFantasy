@@ -1,6 +1,6 @@
 local utils = {}
 
-function utils.get_grid_heatmaps(nbelt, nbcols, relativesize)
+function utils.get_grid(nbelt, nbcols, relativesize)
   -- nbelt: number of heatmaps to plot.
   -- nbcols: maximum number of column in the grid.
   -- relativesize: the size of each heatmap in the grid is computed as relativesize x \linewidth 

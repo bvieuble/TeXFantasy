@@ -56,8 +56,8 @@
 %
 \begin{tikzpicture}[fg]%
   \begin{luacode*}
-    grid = myutils.get_grid_left_err_matvec(#myconfig.plots, myconfig.gridcols,
-                                            myconfig.xsize, myconfig.ysize)
+    grid = myutils.get_grid(#myconfig.plots, myconfig.gridcols,
+                            myconfig.xsize, myconfig.ysize)
 
     for i = 1, #myconfig.plots
     do

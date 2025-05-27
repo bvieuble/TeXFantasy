@@ -21,7 +21,7 @@ function utils_.get_style()
   return line, mark, color
 end
 
-function utils_.get_grid_cvg_sparse(matname, xsize, ysize)
+function utils_.get_grid(matname, xsize, ysize)
   local grid = {}
   local coordx, coordy = {}, {}
   local ytick, yticklabel, ylabel = {}, {}, {}

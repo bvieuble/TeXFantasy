@@ -6,7 +6,7 @@ utils_.plotstyle = {
   call_count = 0,
 }
 
-function utils_.get_grid_left_err_matvec(nbelt, nbcols, xsize, ysize)
+function utils_.get_grid(nbelt, nbcols, xsize, ysize)
   local grid = {}
   local coordx, coordy = {}, {}
   local xlabel = {}

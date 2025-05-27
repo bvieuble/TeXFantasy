@@ -75,9 +75,7 @@
 %
 \begin{tikzpicture}[fg]
   \begin{luacode*} 
-      grid = myutils.get_grid_cvg_sparse(myconfig.title,
-                                         myconfig.xsize, 
-                                         myconfig.ysize)
+      grid = myutils.get_grid(myconfig.title, myconfig.xsize, myconfig.ysize)
 
       left_right_flex = {myconfig.left, myconfig.right, myconfig.flexible}
 

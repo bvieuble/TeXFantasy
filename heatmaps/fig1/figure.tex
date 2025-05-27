@@ -8,6 +8,7 @@
 \usepackage{luacode}
 
 \definecolor{fg}{RGB}{150,150,150} % Foreground color
+\pgfplotsset{filter discard warning=false}
 
 \begin{document}
 %
@@ -50,7 +51,6 @@
     },
     x tick label style={font=\small},
     xlabel=\varxlabel, % Recover the x-axis label from macro
-    % y-axis style
     minor ytick={1.5,2.5,...,16.5},
     y label style={at={(axis description cs:-0.15,0.5)},rotate=0,font=\normalsize},
     ytick={\varytick}, % Recover y-ticks positions from macro
@@ -120,9 +120,8 @@
     -- Get the grid information based on the user input parameters in
     -- config.lua and computed from the function `get_grid_heatmaps(...)`
     -- loaded from utils.lua.
-    grid = myutils.get_grid_heatmaps(#myconfig.plots, 
-                                     myconfig.gridcols,
-                                     myconfig.relativesize)
+    grid = myutils.get_grid(#myconfig.plots, myconfig.gridcols,
+                            myconfig.relativesize)
 
     -- Loop over the heatmaps
     for i = 1, #myconfig.plots
