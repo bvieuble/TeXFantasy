@@ -1,0 +1,147 @@
+% Compiled with LuaLaTeX
+% TeX-command-extra-options: "-shell-escape"
+\documentclass[convert={outext=.png},border=10pt]{standalone}
+\usepackage{fontspec}
+\setmainfont{Roboto}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{amsmath}
+\usepackage{luacode}
+
+\input{color_theme.tex}
+\pgfplotsset{filter discard warning=false}
+
+\begin{document}
+%
+\begin{luacode*}
+  myutils = require("utils")
+  myconfig = require("config")
+\end{luacode*}
+%
+\newcommand{\cvgsparse}
+{%
+  \begin{axis}[
+      legend columns = -1,
+      legend style={at={(\varlegendx\linewidth,\varlegendy\linewidth)}, 
+                    anchor=center, font=\small,fill=none, draw=fg,
+                    /tikz/every even column/.append style={column sep=0.25cm},
+                    },
+      legend to name = plotlegend,
+      axis x line=left,
+      axis y line=middle,
+      grid = major,
+      grid style={dashed},
+      width=\varxsize\linewidth,
+      height=\varysize\linewidth,
+      scale only axis=true,
+      xmin= 0,
+      xmax=\varmaxit,
+      x tick label style={font=\small},
+      xlabel=\varxlabel,
+      ymin= 1e-17,
+      ymax= 1e2,
+      ymode=log,
+      ytick={1e0, 1e-8, 1e-16},
+      y tick label style={font=\small,rotate=90},
+      yticklabels/.expand once = \varyticklabel,
+      y label style={at={(axis description cs:-0.15,1.1)},rotate=0,font=\small},
+      xlabel=\textbf{\varxlabel},
+      ylabel=\varylabel,
+      title style={yshift=-.2cm},
+      title = {\small\vartitle},
+      at={(\varcoordx,\varcoordy)},
+    ]%
+    \varplots
+  \end{axis}
+}%
+%
+\newcommand{\varplotline}[3]
+{%
+  \addplot[mark=none,#1,color=#2,thick, forget plot] table[x=it, y=#3, 
+           col sep=comma] {\varpathcsv};
+}%
+%
+\newcommand{\varplotmark}[3]
+{%
+  \addplot[mark=#1,only marks,mark size=2.5pt,color=#2,thick, forget plot] 
+    table[x=it, y=#3, col sep=comma] {\varpathcsv};
+}%
+%
+\newcommand{\varplotlegend}[3]
+{%
+  \addplot[mark=#1, #2, mark size=2.5pt, mark options=solid, 
+           color=#3,thick] coordinates {(0.0, 1.0)};
+}%
+%
+\begin{tikzpicture}[fg]
+  \begin{luacode*} 
+      grid = myutils.get_grid_cvg_sparse(myconfig.cvg_sparse.title,
+                                         myconfig.cvg_sparse.xsize, 
+                                         myconfig.cvg_sparse.ysize)
+
+      left_right_flex = {myconfig.cvg_sparse.left, myconfig.cvg_sparse.right, 
+                         myconfig.cvg_sparse.flexible}
+
+      for j = 1, #left_right_flex
+      do
+        kind = left_right_flex[j]
+
+        pathcsv = "./data/" .. myconfig.cvg_sparse.matrix .. "/" .. 
+                  kind.dircsv .. "/" .. kind.csv .. ".csv"
+            
+        line_plots = ""
+        mark_plots = ""
+        legend_plots = ""
+        legend     = "\\legend{"
+
+        for i = 1, #kind.plots
+        do
+            local line, mark, color = myutils.get_style()
+            line_plots = line_plots .. 
+                "\\varplotline{" .. line .. "}" ..
+                "{" .. color .. "}" ..
+                "{" .. kind.plots[i] .. "} "
+
+            mark_plots = mark_plots .. 
+                "\\varplotmark{" .. mark .. "}" ..
+                "{" .. color .. "}" ..
+                "{" .. kind.plots[i] .. "-rstrt" .. "} "
+
+            legend_plots = legend_plots .. 
+                "\\varplotlegend{" .. mark .. "}" ..
+                "{" .. line .. "}" .. "{" .. color .. "} " 
+
+            legend = legend .. "\\textsc{" .. kind.plots[i] ..
+                "}" .. ", "
+        end
+        legend     = legend .. "}"
+
+        if myconfig.cvg_sparse.header then
+            tex.print("\\def\\vartitle{"   .. grid.title[j] .. "}")
+        else
+            tex.print("\\def\\vartitle{ {} }")
+        end
+
+        tex.print("\\def\\varxsize{"   .. myconfig.cvg_sparse.xsize .. "}")
+        tex.print("\\def\\varysize{"   .. myconfig.cvg_sparse.ysize .. "}")
+        tex.print("\\def\\varmaxit{"   .. myconfig.cvg_sparse.maxit .. "}")
+        tex.print("\\def\\varcoordx{"  .. grid.coordx[j]            .. "}")
+        tex.print("\\def\\varcoordy{"  .. grid.coordy[j]            .. "}")
+        tex.print("\\def\\varytick{"   .. grid.ytick[j]             .. "}")
+        tex.print("\\def\\varxlabel{"  .. grid.xlabel[j]            .. "}")
+        tex.print("\\def\\varylabel{"  .. grid.ylabel[j]            .. "}")
+        tex.print("\\def\\varyticklabel{" .. grid.yticklabel[j]     .. "}")
+        tex.print("\\def\\varpathcsv{" .. pathcsv                   .. "}")
+        tex.print("\\def\\varplots{ "  .. line_plots .. mark_plots .. 
+                  legend_plots .. legend .." }")
+        tex.print("\\cvgsparse")
+      end
+
+      if myconfig.cvg_sparse.header then
+        tex.print("\\def\\varlegendx{" .. grid.legendx .. "}")
+        tex.print("\\def\\varlegendy{" .. grid.legendy .. "}")
+        tex.print("\\ref{plotlegend}")
+      end
+  \end{luacode*}
+\end{tikzpicture}%
+\end{document}
