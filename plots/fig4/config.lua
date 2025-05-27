@@ -1,48 +1,27 @@
-local config_ = {}
+local config = {}
 
-config_.cvg_sparse = {
-  matrix = "1138_bus",
-  title = "1138\\_bus",
-  xsize = .32,
-  ysize = .4,
-  maxit = 70,
-  header = true,
-  left = {
-    dircsv = "left",
-    csv = "ilu-1.0e-07_cvg",
-    plots = {
-      "ddd",
-      "dsd",
-      "dss",
-      "sss",
-      "dds",
-      "ddb",
-    },
-  },
-  right =  {
-    dircsv = "right",
-    csv = "ilu-1.0e-07_cvg",
-    plots = {
-      "ddd",
-      "dsd",
-      "dss",
-      "sss",
-      "dds",
-      "ddb",
-    },
-  },
-  flexible = {
-    dircsv = "flexible",
-    csv = "ilu-1.0e-07_cvg",
-    plots = {
-      "ddd",
-      "dsd",
-      "dss",
-      "sss",
-      "dds",
-      "ddb",
-    },
-  },
+config.matrix = "1138_bus"
+config.title = "1138\\_bus"
+config.xsize = .32
+config.ysize = .4
+config.maxit = 70
+config.header = true
+config.left = {
+  csv = "left/ilu-1.0e-07_cvg.csv",
+}
+config.right =  {
+  csv = "right/ilu-1.0e-07_cvg.csv",
+}
+config.flexible = {
+  csv = "flexible/ilu-1.0e-07_cvg.csv",
+}
+config.plots = {
+    "ddd",
+    "dsd",
+    "dss",
+    "sss",
+    "dds",
+    "ddb",
 }
 
-return config_
+return config

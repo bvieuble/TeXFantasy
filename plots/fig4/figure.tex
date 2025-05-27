@@ -75,56 +75,54 @@
 %
 \begin{tikzpicture}[fg]
   \begin{luacode*} 
-      grid = myutils.get_grid_cvg_sparse(myconfig.cvg_sparse.title,
-                                         myconfig.cvg_sparse.xsize, 
-                                         myconfig.cvg_sparse.ysize)
+      grid = myutils.get_grid_cvg_sparse(myconfig.title,
+                                         myconfig.xsize, 
+                                         myconfig.ysize)
 
-      left_right_flex = {myconfig.cvg_sparse.left, myconfig.cvg_sparse.right, 
-                         myconfig.cvg_sparse.flexible}
+      left_right_flex = {myconfig.left, myconfig.right, myconfig.flexible}
 
       for j = 1, #left_right_flex
       do
         kind = left_right_flex[j]
 
-        pathcsv = "./data/" .. myconfig.cvg_sparse.matrix .. "/" .. 
-                  kind.dircsv .. "/" .. kind.csv .. ".csv"
+        pathcsv = "./data/" .. myconfig.matrix .. "/" .. kind.csv 
             
         line_plots = ""
         mark_plots = ""
         legend_plots = ""
         legend     = "\\legend{"
 
-        for i = 1, #kind.plots
+        for i = 1, #myconfig.plots
         do
             local line, mark, color = myutils.get_style()
             line_plots = line_plots .. 
                 "\\varplotline{" .. line .. "}" ..
                 "{" .. color .. "}" ..
-                "{" .. kind.plots[i] .. "} "
+                "{" .. myconfig.plots[i] .. "} "
 
             mark_plots = mark_plots .. 
                 "\\varplotmark{" .. mark .. "}" ..
                 "{" .. color .. "}" ..
-                "{" .. kind.plots[i] .. "-rstrt" .. "} "
+                "{" .. myconfig.plots[i] .. "-rstrt" .. "} "
 
             legend_plots = legend_plots .. 
                 "\\varplotlegend{" .. mark .. "}" ..
                 "{" .. line .. "}" .. "{" .. color .. "} " 
 
-            legend = legend .. "\\textsc{" .. kind.plots[i] ..
+            legend = legend .. "\\textsc{" .. myconfig.plots[i] ..
                 "}" .. ", "
         end
         legend     = legend .. "}"
 
-        if myconfig.cvg_sparse.header then
+        if myconfig.header then
             tex.print("\\def\\vartitle{"   .. grid.title[j] .. "}")
         else
             tex.print("\\def\\vartitle{ {} }")
         end
 
-        tex.print("\\def\\varxsize{"   .. myconfig.cvg_sparse.xsize .. "}")
-        tex.print("\\def\\varysize{"   .. myconfig.cvg_sparse.ysize .. "}")
-        tex.print("\\def\\varmaxit{"   .. myconfig.cvg_sparse.maxit .. "}")
+        tex.print("\\def\\varxsize{"   .. myconfig.xsize .. "}")
+        tex.print("\\def\\varysize{"   .. myconfig.ysize .. "}")
+        tex.print("\\def\\varmaxit{"   .. myconfig.maxit .. "}")
         tex.print("\\def\\varcoordx{"  .. grid.coordx[j]            .. "}")
         tex.print("\\def\\varcoordy{"  .. grid.coordy[j]            .. "}")
         tex.print("\\def\\varytick{"   .. grid.ytick[j]             .. "}")
@@ -137,7 +135,7 @@
         tex.print("\\cvgsparse")
       end
 
-      if myconfig.cvg_sparse.header then
+      if myconfig.header then
         tex.print("\\def\\varlegendx{" .. grid.legendx .. "}")
         tex.print("\\def\\varlegendy{" .. grid.legendy .. "}")
         tex.print("\\ref{plotlegend}")
