@@ -1,0 +1,166 @@
+% Compiled with LuaLaTeX
+% TeX-command-extra-options: "-shell-escape"
+\documentclass[convert={outext=.png},border=10pt]{standalone}
+\usepackage{fontspec}
+\setmainfont{Roboto}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{luacode}
+
+\definecolor{fg}{RGB}{150,150,150} % Foreground color
+
+\begin{document}
+%
+\pgfplotsset{title style={xshift=1cm,yshift=-0.2cm}}%
+%
+\pgfmathdeclarefunction{lg10}{1}{%
+    \pgfmathparse{ln(#1)/ln(10)}%
+}%
+%
+% Load utils.lua and config.lua.
+\begin{luacode*}
+  -- utils.lua contains lua functions to be called to be called in this file.
+  myutils = require("utils")
+  -- config.lua contains the user input parameters.
+  myconfig = require("config")
+\end{luacode*}
+%
+% Define a LaTeX command that generates one heatmap. Inside the command, there
+% are various macros that define style options and data paths, such as,
+% "\varxtick", "\varsize" or "\vardatait". These macros should be initialized 
+% before calling the \heatmaps command.
+\newcommand{\heatmap}
+{%
+  \begin{axis}[
+    enlarge x limits={abs=0.5},
+    enlarge y limits={abs=0.},
+    grid=minor,
+    tick style={draw=none}, % Hide the ticks
+    minor grid style={fg,very thin},
+    axis on top,
+    % x-axis style
+    minor xtick={1.5,2.5,...,16.5},
+    x label style={font=\normalsize},
+    xtick=\varxtick, % Recover x-ticks positions from macro
+    xticklabel={
+     \if\varxticklabel 1
+       \pgfmathparse{\tick-1}
+       $10^{\pgfmathprintnumber{\pgfmathresult}}$
+     \fi
+    },
+    x tick label style={font=\small},
+    xlabel=\varxlabel, % Recover the x-axis label from macro
+    % y-axis style
+    minor ytick={1.5,2.5,...,16.5},
+    y label style={at={(axis description cs:-0.15,0.5)},rotate=0,font=\normalsize},
+    ytick={\varytick}, % Recover y-ticks positions from macro
+    yticklabel={
+     \if\varyticklabel 1
+       \pgfmathparse{\tick-1}
+       $10^{\pgfmathprintnumber{\pgfmathresult}}$
+     \fi
+    },
+    y tick label style={font=\small,rotate=90},
+    ylabel=\varylabel, % Recover the y-axis label from macro
+    mesh/ordering=y varies, 
+    unbounded coords=jump,
+    height=\varsize\linewidth, % Set the size (height and width) from macro
+    width=\varsize\linewidth,
+    colormap={whiteblue}{color={black} color=(white)},
+    point meta min=0,
+    point meta max=4,
+    view={0}{90},
+    scale only axis=true, % Enforce the paramaters height and width to describe
+                          % the size of the axis without including the 
+                          % decorations
+    title=\textsc{\vartitle}, % Recover the name of the heatmap from macro
+    at={(\varcoordx,\varcoordy)}, % Recover the position of the heatmap from
+                                  % macro
+  ]%
+  \addplot[matrix plot*,mesh/cols=17,point meta=explicit]
+      table[meta expr=lg10(\thisrow{it}),col sep=comma]
+      {\vardatait}; % Obtain the data path from macro
+  \addplot[white,only marks,mark=*,mark size=0.75pt] 
+      table[col sep=comma] {\vardatabounds};
+  \end{axis}
+}%
+%
+% Define a LaTeX command that generates the colorbar. Because all the heatmaps
+% of the grid share the same colorbar, we need to define the colorbar as a
+% standalone, outside of the heatmap plots. To do so we use the 
+% `\pgfplotscolorbardrawstandalone[...].`
+\newcommand{\heatcolorbar}
+{%
+  \pgfplotscolorbardrawstandalone[
+    colormap={whiteblue}{color={black} color=(white)},
+    point meta min=0,
+    point meta max=3.68,
+    colorbar horizontal,
+    colorbar style={
+       ylabel={\#it},
+       yticklabel pos=upper,
+       ylabel style={rotate=-90, xshift=.22cm},
+       xtick={0,1,1.7,2,2.70,3,3.68},
+       xticklabels={$1e0$, $1e1$, $5e1$, $1e2$, $5e2$, $1e3$, $5e3$},
+       x tick label style={font=\footnotesize},
+       xticklabel pos=upper,
+       at={(\varcbarx\linewidth,\varcbary\linewidth)}, 
+       width=\varcbarsizew\linewidth,
+       anchor=center, % The position of the colorbar defined with `at` is now
+       % based on the center of the figure rather than the left bottom corner
+    },
+    colorbar/width=\varcbarsizeh\linewidth,
+    colormap access=map,
+  ]%
+}%
+%
+\begin{tikzpicture}[fg]
+  \begin{luacode*}
+
+    -- Get the grid information based on the user input parameters in
+    -- config.lua and computed from the function `get_grid_heatmaps(...)`
+    -- loaded from utils.lua.
+    grid = myutils.get_grid_heatmaps(#myconfig.plots, 
+                                     myconfig.gridcols,
+                                     myconfig.relativesize)
+
+    -- Loop over the heatmaps
+    for i = 1, #myconfig.plots
+    do
+      
+      -- Extract name of the heatmap and the source of the data from config.lua
+      title   = myconfig.plots[i][2]
+      pathcsv_it = myconfig.dircsv .. "/iterations/" ..  myconfig.plots[i][1] 
+        .. ".csv"
+      pathcsv_bounds = myconfig.dircsv .. "/bounds/" .. myconfig.plots[i][1] 
+        .. ".csv"
+      
+      -- Set the LaTeX macros that will define the style of the current heatmap
+      tex.print("\\def\\vardatait{"       .. pathcsv_it             .. "}")
+      tex.print("\\def\\vardatabounds{"   .. pathcsv_bounds         .. "}")
+      tex.print("\\def\\vartitle{"        .. title                  .. "}")
+      tex.print("\\def\\varcoordx{"       .. grid.coordx[i]         .. "}")
+      tex.print("\\def\\varcoordy{"       .. grid.coordy[i]         .. "}")
+      tex.print("\\def\\varsize{"         .. myconfig.relativesize  .. "}")
+      tex.print("\\def\\varxtick{"        .. grid.xtick[i]          .. "}")
+      tex.print("\\def\\varxticklabel{"   .. grid.xticklabel[i]     .. "}")
+      tex.print("\\def\\varxlabel{"       .. grid.xlabel[i]         .. "}")
+      tex.print("\\def\\varytick{"        .. grid.ytick[i]          .. "}")
+      tex.print("\\def\\varyticklabel{"   .. grid.yticklabel[i]     .. "}")
+      tex.print("\\def\\varylabel{"       .. grid.ylabel[i]         .. "}")
+
+      -- Generate the current heatmap
+      tex.print("\\heatmap")
+    end
+
+    -- Set the LaTeX macros that will define the style of the colorbar
+    tex.print("\\def\\varcbarx{"      .. grid.cbarx     .. "}")
+    tex.print("\\def\\varcbary{"      .. grid.cbary     .. "}")
+    tex.print("\\def\\varcbarsizew{"  .. grid.cbarsizew .. "}")
+    tex.print("\\def\\varcbarsizeh{"  .. grid.cbarsizeh .. "}")
+
+    -- Generate the colorbar
+    tex.print("\\heatcolorbar")
+  \end{luacode*}
+\end{tikzpicture}%
+\end{document}
