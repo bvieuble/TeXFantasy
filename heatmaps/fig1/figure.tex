@@ -33,12 +33,6 @@
 \newcommand{\heatmap}
 {%
   \begin{axis}[
-    enlarge x limits={abs=0.5},
-    enlarge y limits={abs=0.},
-    grid=minor,
-    tick style={draw=none}, % Hide the ticks
-    minor grid style={fg,very thin},
-    axis on top,
     % x-axis style
     minor xtick={1.5,2.5,...,16.5},
     x label style={font=\normalsize},
@@ -51,6 +45,8 @@
     },
     x tick label style={font=\small},
     xlabel=\varxlabel, % Recover the x-axis label from macro
+    enlarge x limits={abs=0.},
+    % y-axis style
     minor ytick={1.5,2.5,...,16.5},
     y label style={at={(axis description cs:-0.15,0.5)},rotate=0,font=\normalsize},
     ytick={\varytick}, % Recover y-ticks positions from macro
@@ -62,6 +58,12 @@
     },
     y tick label style={font=\small,rotate=90},
     ylabel=\varylabel, % Recover the y-axis label from macro
+    enlarge y limits={abs=0.},
+    % Other style
+    grid=minor,
+    tick style={draw=none}, % Hide the ticks
+    minor grid style={fg,very thin},
+    axis on top,
     mesh/ordering=y varies, 
     unbounded coords=jump,
     height=\varsize\linewidth, % Set the size (height and width) from macro
@@ -77,11 +79,11 @@
     at={(\varcoordx,\varcoordy)}, % Recover the position of the heatmap from
                                   % macro
   ]%
-  \addplot[matrix plot*,mesh/cols=17,point meta=explicit]
+  \addplot[matrix plot*,mesh/rows=17,point meta=explicit]
       table[meta expr=lg10(\thisrow{it}),col sep=comma]
       {\vardatait}; % Obtain the data path from macro
   \addplot[white,only marks,mark=*,mark size=0.75pt] 
-      table[col sep=comma] {\vardatabounds};
+      table[col sep=comma] {\vardatabounds}; % Obtain the data path from macro
   \end{axis}
 }%
 %
